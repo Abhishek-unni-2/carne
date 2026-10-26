@@ -7,7 +7,7 @@ Marketing site for Carne & Gusto, a fresh chicken brand in Bengaluru. Static sit
 ES modules need a server, not `file://`:
 
 ```
-node server.js      # http://localhost:5173
+node dev-server.js      # http://localhost:5173
 ```
 
 ## TODO before launch
