@@ -1,5 +1,4 @@
 import { CONFIG } from './config.js';
-import { createSymbol } from './symbol.js';
 
 const { gsap, ScrollTrigger } = window;
 const $ = (s, r = document) => r.querySelector(s);
@@ -41,17 +40,6 @@ $$('[data-social]').forEach((a) => {
   }
 });
 
-/* ───────── 3D symbol ───────── */
-let symbol = null;
-try {
-  const probe = document.createElement('canvas');
-  if (!(probe.getContext('webgl2') || probe.getContext('webgl'))) throw new Error('no webgl');
-  symbol = createSymbol($('#symbol'), { reduced });
-} catch (err) {
-  document.documentElement.classList.add('no-webgl');
-  console.warn('Symbol fell back to SVG:', err.message);
-}
-
 /* ───────── motion ───────── */
 gsap.registerPlugin(ScrollTrigger);
 
@@ -69,6 +57,8 @@ $$('[data-theme]').forEach((sec) => {
 const intro = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } });
 intro
   .from('.nav', { yPercent: -100, opacity: 0, duration: 0.9 }, 0.2)
+  .from('.hero__photo', { clipPath: 'inset(12% 8% 0% 8% round 999px 999px 24px 24px)', opacity: 0, duration: 1.5, ease: 'power3.out' }, 0.2)
+  .from('.hero__photo img', { scale: 1.25, duration: 1.8, ease: 'power3.out' }, 0.2)
   .from('.hero__eyebrow', { y: 20, opacity: 0, duration: 0.8 }, 0.35)
   .from('.hero__title .ln > span', { yPercent: 115, duration: 1.3, stagger: 0.14 }, 0.4)
   .from('.hero__lede', { y: 24, opacity: 0, duration: 1 }, 0.95)
@@ -176,14 +166,13 @@ mm.add('(min-width: 900px) and (prefers-reduced-motion: no-preference)', () => {
   return () => { gsap.set(scenes, { clearProps: 'all' }); dial.m = STOPS[0].m; renderDial(); };
 });
 
-/* ── range: four panels, one open at a time; the symbol answers ── */
+/* ── range: four panels, one open at a time ── */
 const cuts = $$('.cut');
 const wide = matchMedia('(min-width: 900px)');
 let openCut = 0;
 function openPanel(i) {
   openCut = i;
   cuts.forEach((c, n) => c.classList.toggle('is-active', n === i));
-  symbol?.setFocus(i);
 }
 cuts.forEach((c, i) => {
   c.addEventListener('pointerenter', () => wide.matches && openPanel(i));
@@ -191,10 +180,6 @@ cuts.forEach((c, i) => {
   c.addEventListener('click', () => openPanel(i));
 });
 $$('[data-cut]').forEach((a) => a.addEventListener('click', () => openPanel(+a.dataset.cut)));
-ScrollTrigger.create({
-  trigger: '#range', start: 'top 70%', end: 'bottom 30%',
-  onToggle: (s) => symbol?.setFocus(s.isActive ? openCut : null),
-});
 gsap.from('.cut', {
   y: 70, opacity: 0, duration: 1.1, ease: 'power3.out', stagger: 0.1,
   scrollTrigger: { trigger: '#cuts', start: 'top 82%', once: true },

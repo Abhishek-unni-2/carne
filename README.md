@@ -1,6 +1,6 @@
 # Carne & Gusto
 
-Marketing site for Carne & Gusto, a fresh chicken brand in Bengaluru. Static site: vanilla JS, Three.js (the four-cut symbol) and GSAP/ScrollTrigger.
+Marketing site for Carne & Gusto, a fresh chicken brand in Bengaluru. Static site: vanilla JS and GSAP/ScrollTrigger.
 
 ## Run
 

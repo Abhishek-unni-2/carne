@@ -1,6 +1,6 @@
 /* ───────── Carne & Gusto — design system ─────────
    Brand fixed: deep green + cream/peach, Bebas Neue / DM Sans / Fraunces italic.
-   Layering: section backgrounds < #symbol canvas (z1) < .wrap content (z2) < nav. */
+   */
 
 :root{
   --green:#013d14;
@@ -51,10 +51,6 @@ body::after{
 /* ───────── primitives ───────── */
 .wrap{position:relative;z-index:2;width:100%;max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}
 section,header.hero{position:relative}
-#symbol{position:fixed;inset:0;width:100vw;height:100vh;height:100lvh;z-index:1;pointer-events:none}
-.no-webgl #symbol{display:none}
-.sym-fallback{display:none;width:100%;height:100%}
-.no-webgl .sym-fallback{display:block;position:relative;z-index:2}
 
 .eyebrow{font:600 .75rem/1 var(--f-body);letter-spacing:.22em;text-transform:uppercase;opacity:.8;display:flex;align-items:center;gap:.8rem}
 .dot{width:.35rem;height:.35rem;border-radius:50%;background:currentColor;display:inline-block}
@@ -114,7 +110,7 @@ section,header.hero{position:relative}
   display:grid;grid-template-rows:1fr auto;padding-top:var(--nav-h);
   background-image:radial-gradient(60rem 40rem at 78% 45%,rgba(29,106,53,.55),transparent 70%);
 }
-.hero__sym{position:absolute;right:5vw;top:50%;width:min(64vh,52vw);aspect-ratio:1;transform:translateY(-46%);z-index:0}
+
 .hero__copy{align-self:center;padding-block:2rem}
 .hero__eyebrow{margin-bottom:1.6rem}
 .hero__eyebrow .dot{background:var(--peach-2)}
@@ -137,8 +133,8 @@ section,header.hero{position:relative}
 .belief{background:var(--cream);color:var(--green);padding-block:clamp(6rem,14vw,13rem)}
 .belief__grid{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--gut);row-gap:2rem}
 .belief__label{grid-column:1/-1;color:var(--green-3)}
-.belief__head{grid-column:1/9;font:400 clamp(4.5rem,15vw,15rem)/.82 var(--f-display);text-transform:uppercase;letter-spacing:-.005em}
-.belief__sym{grid-column:8/13;grid-row:2/5;align-self:start;position:sticky;top:calc(50vh - 14rem);aspect-ratio:1;width:100%;max-width:28rem;justify-self:center}
+.belief__head{grid-column:1/8;font:400 clamp(4.5rem,15vw,15rem)/.82 var(--f-display);text-transform:uppercase;letter-spacing:-.005em}
+
 .belief__body{grid-column:1/7;margin-top:clamp(2rem,5vw,5rem);font:500 clamp(1.5rem,3.1vw,2.9rem)/1.22 var(--f-body);letter-spacing:-.015em;color:var(--green)}
 .belief__body em{color:var(--green-3);font-size:1.04em}
 .belief__body .w{display:inline-block;white-space:pre}
@@ -201,7 +197,7 @@ section,header.hero{position:relative}
 .range__head{display:grid;grid-template-columns:1fr;gap:1.5rem;margin-bottom:clamp(2.5rem,5vw,4.5rem);position:relative}
 .range__head .eyebrow{color:var(--green-3);margin-bottom:1.2rem}
 .range__note{max-width:25rem;color:var(--ink-soft)}
-.range__sym{position:absolute;right:var(--gut);top:50%;transform:translateY(-50%);width:min(17rem,24vw);aspect-ratio:1;z-index:0}
+
 
 .cuts{display:flex;gap:.75rem;height:clamp(32rem,76vh,46rem)}
 .cut{
@@ -233,7 +229,7 @@ section,header.hero{position:relative}
 .cut .btn{margin-top:.4rem}
 
 @media (max-width:899px){
-  .range__sym{display:none}
+  
   .cuts{flex-direction:column;height:auto}
   .cut,.cut.is-active{flex:none;aspect-ratio:auto;min-height:32rem}
   .cut::after{background:linear-gradient(to top,rgba(1,40,13,.96) 0%,rgba(1,40,13,.82) 45%,rgba(1,40,13,.2) 80%,transparent)}
@@ -314,7 +310,7 @@ section,header.hero{position:relative}
 .social a{display:inline-block;padding:.45rem .95rem;border:1px solid rgba(246,210,171,.4);border-radius:999px;text-decoration:none;font-size:.85rem;transition:background .3s,color .3s}
 .social a:not(.is-pending):hover{background:var(--peach);color:var(--green)}
 .social a.is-pending{cursor:default;font-family:var(--f-body)}
-.contact__sym{width:min(15rem,60%);aspect-ratio:1;margin-top:2.5rem;margin-left:-.5rem}
+
 
 .form{display:grid;gap:1.6rem;padding:clamp(1.5rem,3.5vw,3rem);border:1px solid rgba(246,210,171,.25);border-radius:1.5rem;background:rgba(246,210,171,.04);backdrop-filter:blur(6px)}
 .field{display:grid;gap:.5rem;border:0;padding:0;margin:0;min-width:0}
@@ -338,7 +334,7 @@ section,header.hero{position:relative}
 .form .btn{justify-self:start}
 .form__status{min-height:1.4em;font-size:.92rem;color:var(--peach)}
 .form__status.is-warn{color:#ffd9b5}
-@media (max-width:899px){.contact__grid{grid-template-columns:1fr}.contact__sym{display:none}}
+@media (max-width:899px){.contact__grid{grid-template-columns:1fr}}
 
 /* ───────── footer ───────── */
 .foot{background:var(--green);padding-block:2rem 2rem;border-top:1px solid rgba(246,210,171,.15);position:relative;overflow:hidden}
@@ -358,13 +354,13 @@ section,header.hero{position:relative}
 /* ───────── small screens ───────── */
 @media (max-width:899px){
   .nav__links{display:none}
-  .hero__sym{width:min(78vw,46vh);right:50%;top:calc(var(--nav-h) + 1.5rem);transform:translateX(50%)}
+  
   .hero__copy{align-self:end;padding-bottom:1rem}
   .hero__title{font-size:clamp(5.5rem,27vw,12rem)}
   .hero__foot{grid-template-columns:1fr auto}
   .hero__count{display:none}
   .belief__head{grid-column:1/-1}
-  .belief__sym{grid-column:1/-1;grid-row:auto;position:static;width:min(20rem,86%);max-width:none;order:3;justify-self:center;margin-block:1rem}
+  
   .belief__body{grid-column:1/-1}
   .belief__sign{grid-column:1/-1}
 }
@@ -415,4 +411,33 @@ html:not(.js) .loader{display:none}
   .nav[data-theme="dark"]{--nbg:rgba(1,61,20,.88)}
   .nav[data-theme="light"]{--nbg:rgba(251,243,232,.92)}
   .nav[data-theme="peach"]{--nbg:rgba(246,210,171,.92)}
+}
+
+/* ───────── hero photo (arch) ───────── */
+.hero__photo{
+  position:absolute;right:max(5vw,1.5rem);top:calc(50% + 1.5rem);transform:translateY(-50%);z-index:0;
+  height:min(76vh,46rem);aspect-ratio:4/5;border-radius:999px 999px 1.5rem 1.5rem;overflow:hidden;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.6);
+}
+.hero__photo picture,.hero__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.hero__photo img{transform:scale(1.04)}
+.hero__photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(1,40,13,.55),transparent 38%)}
+.hero__badge{
+  position:absolute;left:50%;bottom:1.4rem;transform:translateX(-50%);z-index:2;white-space:nowrap;
+  padding:.55rem 1rem;border-radius:999px;background:rgba(251,243,232,.94);color:var(--green);font-size:.8rem;
+}
+.hero__badge b{font-weight:600;margin-right:.4rem;letter-spacing:.04em}
+
+/* ───────── belief numeral ───────── */
+.belief__num{grid-column:8/13;grid-row:2/5;align-self:start;position:sticky;top:calc(50vh - 12rem);display:flex;flex-direction:column;align-items:flex-start;padding-left:clamp(0rem,3vw,3rem);border-left:1px solid rgba(1,61,20,.2)}
+.belief__big{font:400 clamp(9rem,22vw,22rem)/.8 var(--f-display);color:transparent;-webkit-text-stroke:2px var(--green);letter-spacing:-.01em}
+.belief__cap{margin-top:1rem;font:italic 400 1.3rem var(--f-serif);color:var(--green-3)}
+.belief__list{margin-top:1.6rem;display:grid;gap:.6rem;width:100%}
+.belief__list li{font:400 1.7rem/1 var(--f-display);text-transform:uppercase;letter-spacing:.03em;padding-bottom:.6rem;border-bottom:1px solid rgba(1,61,20,.15)}
+@media (max-width:899px){
+  .hero__photo{right:50%;transform:translateX(50%);top:calc(var(--nav-h) + 1rem);height:min(31vh,19rem)}
+  .hero__badge{bottom:.8rem;font-size:.72rem;padding:.4rem .8rem}
+  .hero__eyebrow{margin-bottom:1rem}
+  .belief__num{grid-column:1/-1;grid-row:auto;position:static;order:3;padding:1.5rem 0 0;border-left:0;border-top:1px solid rgba(1,61,20,.2)}
+  .belief__big{font-size:clamp(7rem,38vw,12rem)}
 }

@@ -51,8 +51,6 @@
     </div>
   </div>
 
-  <!-- One fixed canvas carries the brand symbol through the whole page. -->
-  <canvas id="symbol" aria-hidden="true"></canvas>
 
   <nav class="nav" id="nav" data-theme="dark" aria-label="Primary">
     <a class="nav__brand" href="#top" aria-label="Carne &amp; Gusto — home">Carne <i>&amp;</i> Gusto</a>
@@ -70,9 +68,10 @@
   <main>
     <!-- 1 · HERO — point of view first. No product, no photography. -->
     <header class="hero" id="top" data-theme="dark">
-      <div class="hero__sym" data-sym data-explode="0.08" data-spin="1" data-tone="light" aria-hidden="true">
-        <svg class="sym-fallback" viewBox="0 0 100 100"><path d="M48 4a46 46 0 0 0-44 44h44z" fill="#f6d2ab"/><path d="M52 4a46 46 0 0 1 44 44H52z" fill="#2f8a4e"/><path d="M96 52a46 46 0 0 1-44 44V52z" fill="#e59d6a"/><path d="M48 96A46 46 0 0 1 4 52h44z" fill="#0b5a25"/></svg>
-      </div>
+      <figure class="hero__photo" id="heroPhoto">
+        <picture><source srcset="assets/images/train.webp" type="image/webp"><img src="assets/images/train.jpg" width="896" height="1200" fetchpriority="high" alt="A man packing a week of meals into glass containers on a bright kitchen counter, gym bag on the stool behind him"></picture>
+        <figcaption class="hero__badge"><b>Sunday · 11:00</b> The prep hour</figcaption>
+      </figure>
 
       <div class="wrap hero__copy">
         <p class="eyebrow hero__eyebrow">Fresh chicken <span class="dot"></span> Bengaluru</p>
@@ -95,8 +94,10 @@
       <div class="wrap belief__grid">
         <p class="eyebrow belief__label">01 — What we believe</p>
         <h2 class="belief__head" data-reveal>Four cuts.<br>Not forty.</h2>
-        <div class="belief__sym" data-sym data-explode="0.62" data-spin="0.6" data-tone="dark" aria-hidden="true">
-          <svg class="sym-fallback" viewBox="0 0 100 100"><path d="M48 4a46 46 0 0 0-44 44h44z" fill="#f6d2ab"/><path d="M52 4a46 46 0 0 1 44 44H52z" fill="#2f8a4e"/><path d="M96 52a46 46 0 0 1-44 44V52z" fill="#e59d6a"/><path d="M48 96A46 46 0 0 1 4 52h44z" fill="#0b5a25"/></svg>
+        <div class="belief__num" aria-hidden="true">
+          <span class="belief__big">04</span>
+          <span class="belief__cap">cuts in the whole range</span>
+          <ul class="belief__list"><li>Curry Cut</li><li>Breast Boneless</li><li>Boneless Thighs</li><li>Wings</li></ul>
         </div>
         <p class="belief__body" id="manifesto">
           A short list is a form of respect. Every cut we sell is named in plain language and is there for a reason, so there is no catalogue to scroll and no jargon to decode. Just <em>chicken you can plan your week around.</em>
@@ -191,9 +192,6 @@
           <h2 class="h2 range__title">The whole list.<br><em>All four.</em></h2>
         </div>
         <p class="range__note">Each cut is named for what it is. Hover, tap or tab across to read them, then take your pick on Zepto.</p>
-        <div class="range__sym" data-sym data-explode="0.7" data-spin="0.5" data-tone="dark" aria-hidden="true">
-          <svg class="sym-fallback" viewBox="0 0 100 100"><path d="M48 4a46 46 0 0 0-44 44h44z" fill="#f6d2ab"/><path d="M52 4a46 46 0 0 1 44 44H52z" fill="#2f8a4e"/><path d="M96 52a46 46 0 0 1-44 44V52z" fill="#e59d6a"/><path d="M48 96A46 46 0 0 1 4 52h44z" fill="#0b5a25"/></svg>
-        </div>
       </div>
 
       <div class="wrap">
@@ -351,10 +349,6 @@
             <li><a href="#" data-social="facebook">Facebook</a></li>
             <li><a href="#" data-social="linkedin">LinkedIn</a></li>
           </ul>
-
-          <div class="contact__sym" data-sym data-explode="0.0" data-spin="0.8" data-tone="light" aria-hidden="true">
-            <svg class="sym-fallback" viewBox="0 0 100 100"><path d="M48 4a46 46 0 0 0-44 44h44z" fill="#f6d2ab"/><path d="M52 4a46 46 0 0 1 44 44H52z" fill="#2f8a4e"/><path d="M96 52a46 46 0 0 1-44 44V52z" fill="#e59d6a"/><path d="M48 96A46 46 0 0 1 4 52h44z" fill="#0b5a25"/></svg>
-          </div>
         </div>
 
         <form class="form" id="form" novalidate>
