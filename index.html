@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carne &amp; Gusto — Good Food. Thoughtfully Crafted.</title>
+  <meta name="description" content="Carne &amp; Gusto is fresh chicken for Bengaluru, in four deliberate cuts: Curry Cut, Breast Boneless, Boneless Thighs and Wings. Order on Zepto.">
+  <meta name="theme-color" content="#013d14">
+  <meta property="og:title" content="Carne &amp; Gusto — Good Food. Thoughtfully Crafted.">
+  <meta property="og:description" content="Fresh chicken for Bengaluru. Four cuts, named plainly. Order on Zepto.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/green-banner.png">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23013d14'/%3E%3Cpath d='M16 6a10 10 0 0 0-10 10h10z' fill='%23f6d2ab'/%3E%3Cpath d='M17.5 6A10 10 0 0 1 26 14.5h-8.5z' fill='%232f8a4e'/%3E%3Cpath d='M26 17.5A10 10 0 0 1 17.5 26v-8.5z' fill='%23e59d6a'/%3E%3Cpath d='M14.500 26A10 10 0 0 1 6 17.500h8.500z' fill='%230b5a25'/%3E%3C/svg%3E">
+  <script>document.documentElement.classList.add('js','is-loading')</script>
+  <link rel="preload" href="assets/fonts/bebas.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/dmsans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip" href="#belief">Skip to content</a>
+
+  <!-- Loader: a hen draws itself, the brand name rises, then the curtain lifts. -->
+  <div class="loader" id="loader" role="status" aria-live="polite" aria-label="Loading Carne &amp; Gusto">
+    <div class="loader__inner">
+      <svg class="hen" id="hen" viewBox="0 0 260 210" aria-hidden="true">
+        <g class="hen__shapes" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path class="hen__leg" pathLength="1" d="M118 168 L116 194 M116 194 L104 197 M116 194 L124 198"/>
+          <path class="hen__leg" pathLength="1" d="M148 168 L150 194 M150 194 L138 198 M150 194 L159 197"/>
+          <path class="hen__line hen__tail" pathLength="1" d="M186 112 C204 104 214 82 208 58 C222 66 238 88 232 112 C240 100 244 86 240 72 C256 90 252 120 228 138 C212 150 196 150 186 144"/>
+          <path class="hen__line hen__body" pathLength="1" d="M70 118 C70 84 104 70 138 76 C168 82 190 104 188 132 C186 158 160 170 130 170 C96 170 70 154 70 118 Z"/>
+          <path class="hen__line hen__neck" pathLength="1" d="M76 92 C72 104 72 116 78 128 M100 82 C98 92 96 98 92 104"/>
+          <path class="hen__line hen__head" pathLength="1" d="M66 70 C66 56 76 48 88 49 C100 50 108 59 107 72 C106 84 98 92 86 92 C74 92 66 82 66 70 Z"/>
+          <path class="hen__line hen__comb" pathLength="1" d="M78 52 C73 40 82 34 87 43 C89 32 100 32 100 45 C107 42 113 52 105 60"/>
+          <path class="hen__line hen__beak" pathLength="1" d="M66 68 L48 75 L66 81"/>
+          <path class="hen__line hen__wattle" pathLength="1" d="M69 86 C62 98 76 102 77 90"/>
+          <path class="hen__line hen__wing" pathLength="1" d="M102 110 C124 98 158 106 176 130 C152 140 116 138 102 110 Z"/>
+          <path class="hen__line hen__wing" pathLength="1" d="M120 118 C136 112 152 116 163 126 M128 126 C140 122 150 125 156 130"/>
+        </g>
+        <circle class="hen__eye" cx="84" cy="67" r="3"/>
+        <line class="hen__ground" x1="40" y1="203" x2="230" y2="203"/>
+      </svg>
+
+      <p class="loader__brand" id="loaderBrand" aria-hidden="true">Carne &amp; Gusto</p>
+      <p class="loader__tag">Good Food. Thoughtfully Crafted.</p>
+
+      <div class="loader__bar" aria-hidden="true">
+        <span class="loader__fill" id="loaderFill"></span>
+      </div>
+      <p class="loader__pct" aria-hidden="true"><span id="loaderPct">0</span>%</p>
+    </div>
+  </div>
+
+  <!-- One fixed canvas carries the brand symbol through the whole page. -->
+  <canvas id="symbol" aria-hidden="true"></canvas>
+
+  <nav class="nav" id="nav" data-theme="dark" aria-label="Primary">
+    <a class="nav__brand" href="#top" aria-label="Carne &amp; Gusto — home">Carne <i>&amp;</i> Gusto</a>
+    <ul class="nav__links">
+      <li><a href="#belief">Belief</a></li>
+      <li><a href="#routines">Routines</a></li>
+      <li><a href="#range">The range</a></li>
+      <li><a href="#difference">Difference</a></li>
+      <li><a href="#availability">Where</a></li>
+      <li><a href="#contact">Talk to us</a></li>
+    </ul>
+    <a class="btn btn--sm" href="#" data-zepto>Order on Zepto <span aria-hidden="true">↗</span></a>
+  </nav>
+
+  <main>
+    <!-- 1 · HERO — point of view first. No product, no photography. -->
+    <header class="hero" id="top" data-theme="dark">
+      <div class="hero__sym" data-sym data-explode="0.08" data-spin="1" data-tone="light" aria-hidden="true">
+        <svg class="sym-fallback" viewBox="0 0 100 100"><path d="M48 4a46 46 0 0 0-44 44h44z" fill="#f6d2ab"/><path d="M52 4a46 46 0 0 1 44 44H52z" fill="#2f8a4e"/><path d="M96 52a46 46 0 0 1-44 44V52z" fill="#e59d6a"/><path d="M48 96A46 46 0 0 1 4 52h44z" fill="#0b5a25"/></svg>
+      </div>
+
+      <div class="wrap hero__copy">
+        <p class="eyebrow hero__eyebrow">Fresh chicken <span class="dot"></span> Bengaluru</p>
+        <h1 class="hero__title" aria-label="Dinner, decided.">
+          <span class="ln"><span>Dinner,</span></span>
+          <span class="ln"><span><em>decided.</em></span></span>
+        </h1>
+        <p class="hero__lede">For people who train at six, work till seven and still want to&nbsp;cook properly.</p>
+      </div>
+
+      <div class="wrap hero__foot">
+        <p class="hero__tag">Good Food. Thoughtfully Crafted.</p>
+        <a class="hero__scroll" href="#belief"><span class="hero__scrollline" aria-hidden="true"></span>Scroll</a>
+        <p class="hero__count" aria-hidden="true"><b>4</b> deliberate cuts</p>
+      </div>
+    </header>
+
+    <!-- 2 · BELIEF -->
+    <section class="belief" id="belief" data-theme="light">
+      <div class="wrap belief__grid">
+        <p class="eyebrow belief__label">01 — What we believe</p>
+        <h2 class="belief__head" data-reveal>Four cuts.<br>Not forty.</h2>
+        <div class="belief__sym" data-sym data-explode="0.62" data-spin="0.6" data-tone="dark" aria-hidden="true">
+          <svg class="sym-fallback" viewBox="0 0 100 100"><path d="M48 4a46 46 0 0 0-44 44h44z" fill="#f6d2ab"/><path d="M52 4a46 46 0 0 1 44 44H52z" fill="#2f8a4e"/><path d="M96 52a46 46 0 0 1-44 44V52z" fill="#e59d6a"/><path d="M48 96A46 46 0 0 1 4 52h44z" fill="#0b5a25"/></svg>
+        </div>
+        <p class="belief__body" id="manifesto">
+          A short list is a form of respect. Every cut we sell is named in plain language and is there for a reason, so there is no catalogue to scroll and no jargon to decode. Just <em>chicken you can plan your week around.</em>
+        </p>
+        <p class="belief__sign">Carne &amp; Gusto — fresh chicken for Bengaluru, thoughtfully crafted and deliberately small.</p>
+      </div>
+    </section>
+
+    <!-- 3 · ROUTINES — who it's for, told as a day -->
+    <section class="routines" id="routines" data-theme="dark">
+      <div class="routines__stage">
+        <header class="wrap routines__head">
+          <p class="eyebrow">02 — Who it’s for</p>
+          <h2 class="h2">Built around the day<br>you actually have.</h2>
+        </header>
+
+        <div class="wrap routines__body">
+          <div class="clockface">
+            <svg class="dial" id="dial" viewBox="0 0 400 400" aria-hidden="true">
+              <circle class="dial__ring" cx="200" cy="200" r="170"/>
+              <circle class="dial__track" cx="200" cy="200" r="150"/>
+              <circle class="dial__arc" id="dialArc" cx="200" cy="200" r="150" transform="rotate(-90 200 200)"/>
+              <g id="dialTicks"></g>
+              <g id="dialStops"></g>
+              <line class="dial__hand" id="dialHand" x1="200" y1="200" x2="200" y2="62"/>
+              <circle class="dial__hub" cx="200" cy="200" r="7"/>
+            </svg>
+            <div class="clock" aria-hidden="true">
+              <span class="clock__day" id="clockDay">Sunday</span>
+              <span class="clock__time" id="clockTime">11:00</span>
+            </div>
+          </div>
+
+          <div class="scenes">
+            <article class="scene">
+              <figure class="scene__photo">
+                <picture><source srcset="assets/images/train.webp" type="image/webp"><img src="assets/images/train.jpg" width="896" height="1200" loading="lazy" alt="A man packing a week of meals into glass containers on a bright kitchen counter, gym bag on the stool behind him"></picture>
+              </figure>
+              <div class="scene__txt">
+                <p class="scene__when">Sunday · 11:00</p>
+                <h3 class="scene__title">The prep hour</h3>
+                <p>One hour now buys five calm dinners. You need a cut that cooks in bulk and still tastes good on Thursday.</p>
+                <a class="chip" href="#range" data-cut="2">Boneless Thighs</a>
+              </div>
+            </article>
+
+            <article class="scene">
+              <figure class="scene__photo">
+                <picture><source srcset="assets/images/strip-1.webp" type="image/webp"><img src="assets/images/strip-1.jpg" width="896" height="1200" loading="lazy" alt="Overhead view of six meal-prep boxes with grilled chicken, broccoli, sweet potato and avocado on a marble counter"></picture>
+              </figure>
+              <div class="scene__txt">
+                <p class="scene__when">Weekdays · 13:15</p>
+                <h3 class="scene__title">Lunch at the desk</h3>
+                <p>No time to think about protein at one in the afternoon, so it was sorted days ago. Lean, boneless, repeatable.</p>
+                <a class="chip" href="#range" data-cut="1">Breast Boneless</a>
+              </div>
+            </article>
+
+            <article class="scene">
+              <figure class="scene__photo">
+                <picture><source srcset="assets/images/strip-4.webp" type="image/webp"><img src="assets/images/strip-4.jpg" width="896" height="1200" loading="lazy" alt="A woman stretching on a tree-lined evening running path with city towers behind her"></picture>
+              </figure>
+              <div class="scene__txt">
+                <p class="scene__when">Weeknights · 19:10</p>
+                <h3 class="scene__title">Back from the run</h3>
+                <p>Showered, starving, zero patience. Something that goes in the air fryer and comes out as a reward.</p>
+                <a class="chip" href="#range" data-cut="3">Wings</a>
+              </div>
+            </article>
+
+            <article class="scene">
+              <figure class="scene__photo">
+                <picture><source srcset="assets/images/strip-3.webp" type="image/webp"><img src="assets/images/strip-3.jpg" width="896" height="1200" loading="lazy" alt="Golden seared chicken in a cast-iron pan with rosemary over a gas flame in a busy kitchen"></picture>
+              </figure>
+              <div class="scene__txt">
+                <p class="scene__when">Tuesday · 20:40</p>
+                <h3 class="scene__title">Cooking it properly</h3>
+                <p>Some nights you still want a real curry, from scratch, with the bone in. It is slow food on a fast week.</p>
+                <a class="chip" href="#range" data-cut="0">Curry Cut</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 · THE RANGE -->
+    <section class="range" id="range" data-theme="light">
+      <div class="wrap range__head">
+        <div>
+          <p class="eyebrow">03 — The range</p>
+          <h2 class="h2 range__title">The whole list.<br><em>All four.</em></h2>
+        </div>
+        <p class="range__note">Each cut is named for what it is. Hover, tap or tab across to read them, then take your pick on Zepto.</p>
+        <div class="range__sym" data-sym data-explode="0.7" data-spin="0.5" data-tone="dark" aria-hidden="true">
+          <svg class="sym-fallback" viewBox="0 0 100 100"><path d="M48 4a46 46 0 0 0-44 44h44z" fill="#f6d2ab"/><path d="M52 4a46 46 0 0 1 44 44H52z" fill="#2f8a4e"/><path d="M96 52a46 46 0 0 1-44 44V52z" fill="#e59d6a"/><path d="M48 96A46 46 0 0 1 4 52h44z" fill="#0b5a25"/></svg>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <div class="cuts" id="cuts">
+          <article class="cut is-active" tabindex="0" data-i="0" aria-label="Curry Cut">
+            <picture><source srcset="assets/images/curry-cut.webp" type="image/webp"><img src="assets/images/curry-cut.jpg" width="1024" height="1024" loading="lazy" alt="Bone-in curry cut chicken pieces laid out on a slate board with parsley and black pepper"></picture>
+            <span class="cut__rail" aria-hidden="true"><b>01</b> Curry Cut</span>
+            <div class="cut__body">
+              <p class="cut__num">01</p>
+              <h3 class="cut__name">Curry Cut</h3>
+              <p>Bone-in pieces, cut for curries and gravies. The bone stays because it earns its place in the pot.</p>
+              <ul class="tags"><li>Bone-in</li><li>Curries &amp; gravies</li></ul>
+              <a class="btn btn--peach" href="#" data-zepto>Find it on Zepto <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+
+          <article class="cut" tabindex="0" data-i="1" aria-label="Breast Boneless">
+            <picture><source srcset="assets/images/breast-boneless.webp" type="image/webp"><img src="assets/images/breast-boneless.jpg" width="1024" height="1024" loading="lazy" alt="Four boneless chicken breasts arranged on white marble with thyme and parsley"></picture>
+            <span class="cut__rail" aria-hidden="true"><b>02</b> Breast Boneless</span>
+            <div class="cut__body">
+              <p class="cut__num">02</p>
+              <h3 class="cut__name">Breast Boneless</h3>
+              <p>Lean and boneless. The one you cook on Sunday and are still glad to see on Thursday.</p>
+              <ul class="tags"><li>Boneless</li><li>Lean</li><li>Meal-prep friendly</li></ul>
+              <a class="btn btn--peach" href="#" data-zepto>Find it on Zepto <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+
+          <article class="cut" tabindex="0" data-i="2" aria-label="Boneless Thighs">
+            <picture><source srcset="assets/images/boneless-thighs.webp" type="image/webp"><img src="assets/images/boneless-thighs.jpg" width="1024" height="1024" loading="lazy" alt="Boneless chicken thighs seasoned with thyme and pepper on a rustic wooden board"></picture>
+            <span class="cut__rail" aria-hidden="true"><b>03</b> Boneless Thighs</span>
+            <div class="cut__body">
+              <p class="cut__num">03</p>
+              <h3 class="cut__name">Boneless Thighs</h3>
+              <p>Juicy and forgiving, so it survives a distracted cook. Good for cooking in bulk.</p>
+              <ul class="tags"><li>Boneless</li><li>Juicy</li><li>Bulk cooking</li></ul>
+              <a class="btn btn--peach" href="#" data-zepto>Find it on Zepto <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+
+          <article class="cut" tabindex="0" data-i="3" aria-label="Wings">
+            <picture><source srcset="assets/images/wings.webp" type="image/webp"><img src="assets/images/wings.jpg" width="1024" height="1024" loading="lazy" alt="Seasoned chicken wings lined up on a white ceramic platter with rosemary"></picture>
+            <span class="cut__rail" aria-hidden="true"><b>04</b> Wings</span>
+            <div class="cut__body">
+              <p class="cut__num">04</p>
+              <h3 class="cut__name">Wings</h3>
+              <p>Snack-ready and happy in an air fryer. Dinner for one, or something to share.</p>
+              <ul class="tags"><li>Snack-ready</li><li>Air-fryer friendly</li></ul>
+              <a class="btn btn--peach" href="#" data-zepto>Find it on Zepto <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 · DIFFERENCE -->
+    <section class="diff" id="difference" data-theme="dark">
+      <div class="wrap diff__grid">
+        <div class="diff__intro">
+          <p class="eyebrow">04 — What makes it different</p>
+          <h2 class="h2">Small on purpose.<br><em>Plain on the label.</em></h2>
+
+          <div class="nope" id="nope">
+            <p class="nope__lead">Words you won’t find on our packs</p>
+            <ul>
+              <li><s>premium-grade</s></li>
+              <li><s>super-select</s></li>
+              <li><s>chef’s choice</s></li>
+              <li><s>ultra-fresh</s></li>
+            </ul>
+            <p class="nope__yes">Boneless Thighs. <span>Said plainly.</span></p>
+          </div>
+        </div>
+
+        <div class="diff__photos" aria-hidden="false">
+          <figure class="diff__ph diff__ph--a" data-parallax="-40">
+            <picture><source srcset="assets/images/label.webp" type="image/webp"><img src="assets/images/label.jpg" width="896" height="1200" loading="lazy" alt="A Carne &amp; Gusto pack in kraft packaging with a cream label reading Fresh Chicken, Bangalore, on a slate surface"></picture>
+          </figure>
+          <figure class="diff__ph diff__ph--b" data-parallax="40">
+            <picture><source srcset="assets/images/fresh.webp" type="image/webp"><img src="assets/images/fresh.jpg" width="896" height="1200" loading="lazy" alt="Gloved hands slicing a chicken breast with a long knife on a wooden board"></picture>
+          </figure>
+        </div>
+
+        <ol class="diff__list">
+          <li data-reveal>
+            <span class="diff__n">I</span>
+            <h3>A small range</h3>
+            <p>Four cuts means no wandering the aisle. You always know what you are ordering and why it is on the list.</p>
+          </li>
+          <li data-reveal>
+            <span class="diff__n">II</span>
+            <h3>Honest labelling</h3>
+            <p>Cut name first. Bone-in or boneless, said plainly. A label should tell you what is inside, not how to feel about it.</p>
+          </li>
+          <li data-reveal>
+            <span class="diff__n">III</span>
+            <h3>Fresh, on purpose</h3>
+            <p>Fresh chicken is the whole product, and it is why the range is small enough to do properly.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 6 · AVAILABILITY -->
+    <section class="where" id="availability" data-theme="peach">
+      <div class="wrap where__grid">
+        <div class="where__copy">
+          <p class="eyebrow">05 — Availability</p>
+          <h2 class="h2">Five neighbourhoods<br><em>across Bengaluru.</em></h2>
+          <ul class="hoods" id="hoods">
+            <li><a href="#" data-zepto data-hood="indiranagar"><span>Indiranagar</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="#" data-zepto data-hood="koramangala"><span>Koramangala</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="#" data-zepto data-hood="hsr"><span>HSR Layout</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="#" data-zepto data-hood="bellandur"><span>Bellandur</span><i aria-hidden="true">↗</i></a></li>
+            <li><a href="#" data-zepto data-hood="whitefield"><span>Whitefield</span><i aria-hidden="true">↗</i></a></li>
+          </ul>
+          <p class="where__note">Enter your address on Zepto to confirm delivery to your door.</p>
+        </div>
+
+        <figure class="schematic">
+          <svg viewBox="0 0 600 540" role="img" aria-label="Schematic of the five delivery neighbourhoods: Indiranagar, Koramangala, HSR Layout, Bellandur and Whitefield">
+            <g class="sch__rings" fill="none">
+              <ellipse cx="300" cy="280" rx="270" ry="235"/>
+              <ellipse cx="300" cy="280" rx="200" ry="170"/>
+              <ellipse cx="300" cy="280" rx="130" ry="105"/>
+            </g>
+            <path class="sch__route" id="route" d="M250 120 L225 265 L285 395 L415 325 L525 150" fill="none"/>
+            <g class="sch__nodes">
+              <g class="sch__node" data-hood="indiranagar" transform="translate(250 120)"><circle class="pulse" r="10"/><circle r="9"/><text x="-22" y="6" text-anchor="end">Indiranagar</text></g>
+              <g class="sch__node" data-hood="koramangala" transform="translate(225 265)"><circle class="pulse" r="10"/><circle r="9"/><text x="-22" y="6" text-anchor="end">Koramangala</text></g>
+              <g class="sch__node" data-hood="hsr" transform="translate(285 395)"><circle class="pulse" r="10"/><circle r="9"/><text x="-22" y="6" text-anchor="end">HSR Layout</text></g>
+              <g class="sch__node" data-hood="bellandur" transform="translate(415 325)"><circle class="pulse" r="10"/><circle r="9"/><text x="22" y="6">Bellandur</text></g>
+              <g class="sch__node" data-hood="whitefield" transform="translate(525 150)"><circle class="pulse" r="10"/><circle r="9"/><text x="14" y="-18" text-anchor="end">Whitefield</text></g>
+            </g>
+          </svg>
+          <figcaption>Schematic, not to scale.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 7 · CONTACT -->
+    <section class="contact" id="contact" data-theme="dark">
+      <div class="wrap contact__grid">
+        <div class="contact__copy">
+          <p class="eyebrow">06 — Talk to us</p>
+          <h2 class="h2">Partner with us,<br><em>or just say hello.</em></h2>
+          <p class="contact__lede">Cafés, gyms, meal-prep kitchens, creators, or someone with a good idea: tell us what you have in mind.</p>
+
+          <dl class="reach">
+            <div><dt>Email</dt><dd data-contact="email">Coming soon</dd></div>
+            <div><dt>Phone</dt><dd data-contact="phone">Coming soon</dd></div>
+          </dl>
+          <ul class="social">
+            <li><a href="#" data-social="instagram">Instagram</a></li>
+            <li><a href="#" data-social="facebook">Facebook</a></li>
+            <li><a href="#" data-social="linkedin">LinkedIn</a></li>
+          </ul>
+
+          <div class="contact__sym" data-sym data-explode="0.0" data-spin="0.8" data-tone="light" aria-hidden="true">
+            <svg class="sym-fallback" viewBox="0 0 100 100"><path d="M48 4a46 46 0 0 0-44 44h44z" fill="#f6d2ab"/><path d="M52 4a46 46 0 0 1 44 44H52z" fill="#2f8a4e"/><path d="M96 52a46 46 0 0 1-44 44V52z" fill="#e59d6a"/><path d="M48 96A46 46 0 0 1 4 52h44z" fill="#0b5a25"/></svg>
+          </div>
+        </div>
+
+        <form class="form" id="form" novalidate>
+          <div class="field">
+            <label for="f-name">Name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required>
+            <span class="err" data-err="name"></span>
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required>
+            <span class="err" data-err="email"></span>
+          </div>
+          <div class="field">
+            <label for="f-phone">Phone <small>optional</small></label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel">
+            <span class="err" data-err="phone"></span>
+          </div>
+          <fieldset class="field pills">
+            <legend>What’s this about?</legend>
+            <label><input type="radio" name="type" value="Partnership" required><span>Partnership</span></label>
+            <label><input type="radio" name="type" value="Bulk or corporate order"><span>Bulk / corporate</span></label>
+            <label><input type="radio" name="type" value="Press or collaboration"><span>Press &amp; collabs</span></label>
+            <label><input type="radio" name="type" value="Something else"><span>Something else</span></label>
+            <span class="err" data-err="type"></span>
+          </fieldset>
+          <div class="field">
+            <label for="f-msg">Message</label>
+            <textarea id="f-msg" name="message" rows="4" required></textarea>
+            <span class="err" data-err="message"></span>
+          </div>
+          <button class="btn btn--peach btn--lg" type="submit">Send enquiry <span aria-hidden="true">→</span></button>
+          <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot" data-theme="dark">
+    <div class="wrap">
+      <p class="foot__word" aria-label="Carne &amp; Gusto">Carne <i>&amp;</i> Gusto</p>
+      <div class="foot__row">
+        <p class="foot__tag">Good Food. Thoughtfully Crafted.</p>
+        <nav class="foot__nav" aria-label="Footer">
+          <a href="#belief">Belief</a><a href="#range">The range</a><a href="#availability">Where</a><a href="#contact">Contact</a>
+          <a href="#" data-zepto>Zepto ↗</a>
+        </nav>
+        <p class="foot__small">© 2026 Carne &amp; Gusto · Bengaluru, India</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

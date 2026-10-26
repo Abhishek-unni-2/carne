@@ -1,0 +1,4 @@
+_previous-draft/
+node_modules/
+.DS_Store
+*.log
