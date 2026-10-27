@@ -57,8 +57,8 @@ $$('[data-theme]').forEach((sec) => {
 const intro = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } });
 intro
   .from('.nav', { yPercent: -100, opacity: 0, duration: 0.9 }, 0.2)
-  .from('.hero__photo', { clipPath: 'inset(12% 8% 0% 8% round 999px 999px 24px 24px)', opacity: 0, duration: 1.5, ease: 'power3.out' }, 0.2)
-  .from('.hero__photo img', { scale: 1.25, duration: 1.8, ease: 'power3.out' }, 0.2)
+  .from('.hero__arch', { clipPath: 'inset(12% 8% 0% 8% round 999px 999px 24px 24px)', opacity: 0, duration: 1.5, ease: 'power3.out' }, 0.2)
+  .from('.hero__float, .hero__ring', { scale: 0.4, opacity: 0, duration: 1.2, ease: 'back.out(1.6)', stagger: 0.15 }, 0.9)
   .from('.hero__eyebrow', { y: 20, opacity: 0, duration: 0.8 }, 0.35)
   .from('.hero__title .ln > span', { yPercent: 115, duration: 1.3, stagger: 0.14 }, 0.4)
   .from('.hero__lede', { y: 24, opacity: 0, duration: 1 }, 0.95)
@@ -320,42 +320,89 @@ addEventListener('load', () => ScrollTrigger.refresh());
   if (reduced) { done(); intro.progress(1); return; }
 
   const brand = $('#loaderBrand');
-  const letters = [...brand.textContent].map((ch) => {
-    const s = document.createElement('span');
-    s.textContent = ch === ' ' ? '\u00a0' : ch;
-    return s;
-  });
+  const stage = $('#loaderStage');
+  const sheen = $('.loader__sheen');
+  const words = brand.textContent.trim().split(/\s+/);
   brand.textContent = '';
-  brand.append(...letters);
+  const letters = [];
+  words.forEach((w) => {
+    const word = document.createElement('span');
+    word.className = 'loader__word';
+    [...w].forEach((ch) => {
+      const s = document.createElement('span');
+      s.textContent = ch;
+      letters.push(s);
+      word.append(s);
+    });
+    brand.append(word);
+  });
+  const n = letters.length, mid = (n - 1) / 2;
 
-  const hen = $('#hen');
-  const lines = $$('.hen__line, .hen__leg', hen);
-  const fill = $('#loaderFill'), pct = $('#loaderPct');
-  const p = { v: 0 };
-  const paint = () => { fill.style.transform = `scaleX(${p.v / 100})`; pct.textContent = Math.round(p.v); };
+  gsap.set(letters, { opacity: 0, rotationX: -95, z: -700, y: 60, transformOrigin: '50% 100% -40px' });
+  gsap.set(brand, { rotationY: -24, rotationX: 8 });
 
-  // 1 · the hen draws itself, then fills in
-  const tl = gsap.timeline({ defaults: { ease: 'power2.inOut' } });
-  tl.to(lines, { strokeDashoffset: 0, duration: 1.1, stagger: 0.09 }, 0.1)
-    .to($('.hen__eye', hen), { opacity: 1, duration: 0.3 }, 1.0)
-    .add(() => hen.classList.add('is-filled'), 1.3)
-    .fromTo(hen, { y: 0 }, { y: -5, duration: 0.55, ease: 'sine.inOut', yoyo: true, repeat: 3 }, 1.4)
-    // 2 · the brand name rises letter by letter
-    .to(letters, { yPercent: 0, duration: 0.8, ease: 'power4.out', stagger: 0.045 }, 1.0)
-    .to('.loader__tag', { opacity: 0.95, duration: 0.8, ease: 'power1.out' }, 1.8);
-  gsap.set(letters, { yPercent: 110 });
-  // progress runs on its own clock and eases toward 92% until the page is actually ready
-  gsap.to(p, { v: 92, duration: 2.4, ease: 'power2.out', onUpdate: paint });
+  // 1 · letters swing up out of the dark, settling one after another
+  const tl = gsap.timeline();
+  tl.to('.loader__glow', { opacity: 1, duration: 1.4, ease: 'power2.out' }, 0)
+    .to(letters, { opacity: 1, rotationX: 0, z: 0, y: 0, duration: 1.15, ease: 'back.out(1.5)', stagger: { each: 0.06, from: 'start' } }, 0.15)
+    // 2 · the whole word turns to face us, then a light passes across it
+    .to(brand, { rotationY: 0, rotationX: 0, duration: 1.6, ease: 'power3.out' }, 0.2)
+    .add(() => sheen.classList.add('is-run'), 1.2)
+    .to(brand, { rotationY: 5, duration: 2.2, ease: 'sine.inOut', yoyo: true, repeat: -1 }, 1.8);
 
+  // gentle pointer parallax on top of the idle sway
+  const tiltX = gsap.quickTo(stage, 'rotationX', { duration: 0.8, ease: 'power3.out' });
+  const tiltY = gsap.quickTo(stage, 'rotationY', { duration: 0.8, ease: 'power3.out' });
+  const onMove = (e) => { tiltY((e.clientX / innerWidth - 0.5) * 14); tiltX(-(e.clientY / innerHeight - 0.5) * 10); };
+  addEventListener('pointermove', onMove);
+
+  const entered = new Promise((r) => gsap.delayedCall(0.15 + 0.06 * (n - 1) + 1.15, r));
   const loaded = new Promise((r) => (document.readyState === 'complete' ? r() : addEventListener('load', r, { once: true })));
-  const ready = Promise.all([loaded, document.fonts ? document.fonts.ready : Promise.resolve(), new Promise((r) => tl.eventCallback('onComplete', r))]);
+  const ready = Promise.all([loaded, document.fonts ? document.fonts.ready : Promise.resolve(), entered]);
   const failsafe = new Promise((r) => setTimeout(r, 7000));
 
   Promise.race([ready, failsafe]).then(() => {
-    // 3 · finish the bar, then lift the curtain
-    gsap.to(p, { v: 100, duration: 0.45, ease: 'power1.out', onUpdate: paint });
-    gsap.timeline({ delay: 0.55 })
-      .to('.loader__inner', { y: -24, opacity: 0, duration: 0.55, ease: 'power2.in' })
-      .to(el, { yPercent: -100, duration: 1, ease: 'power4.inOut', onComplete: done }, '-=0.1');
+    // 3 · letters rush past the camera from the centre out, then the curtain lifts
+    removeEventListener('pointermove', onMove);
+    gsap.timeline({ delay: 0.5 })
+      .to(letters, { z: 900, opacity: 0, rotationX: 25, duration: 0.8, ease: 'power3.in', stagger: { each: 0.035, from: 'center' } })
+      .to('.loader__glow', { opacity: 0, duration: 0.5 }, '<')
+      .to(el, { yPercent: -100, duration: 1, ease: 'power4.inOut', onComplete: done }, '-=0.35');
+  });
+})();
+
+
+/* ───────── hero: 3D tilt, photo rotation, optional footage ───────── */
+(function heroMedia() {
+  const stage = $('#heroPhoto'), tilt = $('#heroTilt'), arch = $('.hero__arch');
+  if (!stage || !tilt) return;
+
+  // client footage, when present, plays over the photos
+  const vid = $('#heroVideo');
+  if (vid) {
+    vid.addEventListener('canplay', () => { vid.classList.add('is-ready'); vid.play().catch(() => {}); }, { once: true });
+    vid.querySelector('source').addEventListener('error', () => vid.remove());
+  }
+
+  // slow rotation through the cooking photos
+  const imgs = $$('#heroSlides img');
+  let i = 0;
+  if (!reduced && imgs.length > 1) {
+    setInterval(() => {
+      imgs[i].classList.remove('is-on');
+      i = (i + 1) % imgs.length;
+      void imgs[i].offsetWidth;
+      imgs[i].classList.add('is-on');
+    }, 4500);
+  }
+
+  if (reduced || !matchMedia('(hover:hover) and (min-width:900px)').matches) return;
+  const rx = gsap.quickTo(tilt, 'rotationX', { duration: 0.9, ease: 'power3.out' });
+  const ry = gsap.quickTo(tilt, 'rotationY', { duration: 0.9, ease: 'power3.out' });
+  addEventListener('pointermove', (e) => {
+    const nx = e.clientX / innerWidth - 0.5, ny = e.clientY / innerHeight - 0.5;
+    ry(nx * 22); rx(-ny * 16);
+    arch.style.setProperty('--gx', 50 + nx * 80 + '%');
+    arch.style.setProperty('--gy', 30 + ny * 80 + '%');
   });
 })();
