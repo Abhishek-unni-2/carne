@@ -338,8 +338,9 @@ addEventListener('load', () => ScrollTrigger.refresh());
   });
   const n = letters.length, mid = (n - 1) / 2;
 
-  gsap.set(letters, { opacity: 0, rotationX: -95, z: -700, y: 60, transformOrigin: '50% 100% -40px' });
-  gsap.set(brand, { rotationY: -24, rotationX: 8 });
+  const small = matchMedia('(max-width:899px)').matches;
+  gsap.set(letters, { opacity: 0, rotationX: -95, z: small ? -350 : -700, y: 60, transformOrigin: '50% 100% -40px' });
+  gsap.set(brand, { rotationY: small ? -12 : -24, rotationX: small ? 4 : 8 });
 
   // 1 · letters swing up out of the dark, settling one after another
   const tl = gsap.timeline();
@@ -348,7 +349,7 @@ addEventListener('load', () => ScrollTrigger.refresh());
     // 2 · the whole word turns to face us, then a light passes across it
     .to(brand, { rotationY: 0, rotationX: 0, duration: 1.6, ease: 'power3.out' }, 0.2)
     .add(() => sheen.classList.add('is-run'), 1.2)
-    .to(brand, { rotationY: 5, duration: 2.2, ease: 'sine.inOut', yoyo: true, repeat: -1 }, 1.8);
+    .to(brand, { rotationY: small ? 3 : 5, duration: 2.2, ease: 'sine.inOut', yoyo: true, repeat: -1 }, 1.8);
 
   // gentle pointer parallax on top of the idle sway
   const tiltX = gsap.quickTo(stage, 'rotationX', { duration: 0.8, ease: 'power3.out' });
@@ -365,7 +366,7 @@ addEventListener('load', () => ScrollTrigger.refresh());
     // 3 · letters rush past the camera from the centre out, then the curtain lifts
     removeEventListener('pointermove', onMove);
     gsap.timeline({ delay: 0.5 })
-      .to(letters, { z: 900, opacity: 0, rotationX: 25, duration: 0.8, ease: 'power3.in', stagger: { each: 0.035, from: 'center' } })
+      .to(letters, { z: small ? 450 : 900, opacity: 0, rotationX: 25, duration: 0.8, ease: 'power3.in', stagger: { each: 0.035, from: 'center' } })
       .to('.loader__glow', { opacity: 0, duration: 0.5 }, '<')
       .to(el, { yPercent: -100, duration: 1, ease: 'power4.inOut', onComplete: done }, '-=0.35');
   });
