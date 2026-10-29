@@ -20,28 +20,41 @@
 <body>
   <a class="skip" href="#belief">Skip to content</a>
 
-  <!-- Loader: the brand name only, in 3D. Letters swing in from depth, catch a light sweep, then fly past the camera. -->
+  <!-- Loader: the name sits on a spinning 3D ring that slows, unrolls flat so it reads clearly, then flies past the camera. -->
   <div class="loader" id="loader" role="status" aria-live="polite" aria-label="Loading Carne &amp; Gusto">
     <div class="loader__glow" aria-hidden="true"></div>
     <div class="loader__stage" id="loaderStage">
-      <p class="loader__brand" id="loaderBrand" aria-hidden="true">Carne &amp; Gusto</p>
-      <span class="loader__sheen" aria-hidden="true"></span>
+      <div class="loader__ring" id="loaderRing" aria-hidden="true"></div>
     </div>
+    <p class="loader__floor" aria-hidden="true"></p>
   </div>
 
 
   <nav class="nav" id="nav" data-theme="dark" aria-label="Primary">
     <a class="nav__brand" href="#top" aria-label="Carne &amp; Gusto — home">Carne <i>&amp;</i> Gusto</a>
     <ul class="nav__links">
-      <li><a href="#belief">Belief</a></li>
-      <li><a href="#routines">Routines</a></li>
-      <li><a href="#range">The range</a></li>
-      <li><a href="#difference">Difference</a></li>
-      <li><a href="#availability">Where</a></li>
-      <li><a href="#contact">Talk to us</a></li>
+      <li><a href="#top">Home</a></li>
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#range">Products</a></li>
+      <li><a href="#difference">Our Difference</a></li>
+      <li><a href="#availability">Availability</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-    <a class="btn btn--sm" href="#" data-zepto>Order on Zepto <span aria-hidden="true">↗</span></a>
+    <a class="btn btn--sm nav__cta" href="#" data-zepto>Find us on Zepto <span aria-hidden="true">↗</span></a>
+    <button class="nav__toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
   </nav>
+
+  <div class="menu" id="menu" aria-hidden="true">
+    <ul>
+      <li><a href="#top">Home</a></li>
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#range">Products</a></li>
+      <li><a href="#difference">Our Difference</a></li>
+      <li><a href="#availability">Availability</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="btn btn--peach btn--lg" href="#" data-zepto>Find us on Zepto <span aria-hidden="true">↗</span></a>
+  </div>
 
   <main>
     <!-- 1 · HERO — point of view first. No product, no photography. -->
@@ -69,112 +82,55 @@
 
       <div class="wrap hero__copy">
         <p class="eyebrow hero__eyebrow">Fresh chicken <span class="dot"></span> Bengaluru</p>
-        <h1 class="hero__title" aria-label="Dinner, decided.">
-          <span class="ln"><span>Dinner,</span></span>
-          <span class="ln"><span><em>decided.</em></span></span>
+        <h1 class="hero__title" aria-label="Good Food. Thoughtfully Crafted.">
+          <span class="ln"><span>Good Food.</span></span>
+          <span class="ln"><span><em>Thoughtfully</em></span></span>
+          <span class="ln"><span><em>Crafted.</em></span></span>
         </h1>
-        <p class="hero__lede">For people who train at six, work till seven and still want to&nbsp;cook properly.</p>
+        <p class="hero__lede">Carne &amp; Gusto is a fresh chicken brand built on a simple belief: what you bring home deserves the same care as what is served at a good table. A deliberately small range of cuts, made to be part of an ordinary, well-fed week.</p>
+        <div class="hero__cta">
+          <a class="btn btn--peach" href="#range">Explore our products <span aria-hidden="true">→</span></a>
+          <a class="btn btn--ghost" href="#story">Our story <span aria-hidden="true">→</span></a>
+          <a class="btn btn--ghost" href="#" data-zepto>Find us on Zepto <span aria-hidden="true">↗</span></a>
+        </div>
       </div>
 
       <div class="wrap hero__foot">
-        <p class="hero__tag">Good Food. Thoughtfully Crafted.</p>
-        <a class="hero__scroll" href="#belief"><span class="hero__scrollline" aria-hidden="true"></span>Scroll</a>
-        <p class="hero__count" aria-hidden="true"><b>4</b> deliberate cuts</p>
+        <p class="hero__avail">Available on Zepto in select Bengaluru neighbourhoods — HSR Layout, Bellandur, Koramangala, Whitefield, Indiranagar.</p>
+        <a class="hero__scroll" href="#story"><span class="hero__scrollline" aria-hidden="true"></span>Scroll</a>
       </div>
     </header>
 
-    <!-- 2 · BELIEF -->
-    <section class="belief" id="belief" data-theme="light">
-      <div class="wrap belief__grid">
-        <p class="eyebrow belief__label">01 — What we believe</p>
-        <h2 class="belief__head" data-reveal>Four cuts.<br>Not forty.</h2>
-        <div class="belief__num" aria-hidden="true">
-          <span class="belief__big">04</span>
-          <span class="belief__cap">cuts in the whole range</span>
-          <ul class="belief__list"><li>Curry Cut</li><li>Breast Boneless</li><li>Boneless Thighs</li><li>Wings</li></ul>
-        </div>
-        <p class="belief__body" id="manifesto">
-          A short list is a form of respect. Every cut we sell is named in plain language and is there for a reason, so there is no catalogue to scroll and no jargon to decode. Just <em>chicken you can plan your week around.</em>
-        </p>
-        <p class="belief__sign">Carne &amp; Gusto — fresh chicken for Bengaluru, thoughtfully crafted and deliberately small.</p>
+    <!-- 2 · OUR STORY -->
+    <section class="story" id="story" data-theme="light">
+      <div class="wrap story__top">
+        <p class="eyebrow story__label">Our Story</p>
+        <h2 class="story__head" data-reveal>More Than a Product.<br><em>A Point of View.</em></h2>
+        <p class="story__body" id="manifesto">Carne &amp; Gusto is a fresh chicken brand built on a point of view rather than a long product list. We believe everyday food deserves the same consideration as a special occasion — that quality should be quiet, consistent and within reach. So we keep the range deliberate: four cuts, and every one of them given our full attention. Fewer things, chosen carefully, described honestly.</p>
       </div>
-    </section>
 
-    <!-- 3 · ROUTINES — who it's for, told as a day -->
-    <section class="routines" id="routines" data-theme="dark">
-      <div class="routines__stage">
-        <header class="wrap routines__head">
-          <p class="eyebrow">02 — Who it’s for</p>
-          <h2 class="h2">Built around the day<br>you actually have.</h2>
-        </header>
+      <figure class="story__image" data-theme="dark">
+        <picture><source srcset="assets/images/hero.webp" type="image/webp"><img src="assets/images/hero.jpg" width="1376" height="768" loading="lazy" alt="Raw chicken pieces on a slate slab with rosemary and flaky salt beside them, in a rustic kitchen"></picture>
+      </figure>
 
-        <div class="wrap routines__body">
-          <div class="clockface">
-            <svg class="dial" id="dial" viewBox="0 0 400 400" aria-hidden="true">
-              <circle class="dial__ring" cx="200" cy="200" r="170"/>
-              <circle class="dial__track" cx="200" cy="200" r="150"/>
-              <circle class="dial__arc" id="dialArc" cx="200" cy="200" r="150" transform="rotate(-90 200 200)"/>
-              <g id="dialTicks"></g>
-              <g id="dialStops"></g>
-              <line class="dial__hand" id="dialHand" x1="200" y1="200" x2="200" y2="62"/>
-              <circle class="dial__hub" cx="200" cy="200" r="7"/>
-            </svg>
-            <div class="clock" aria-hidden="true">
-              <span class="clock__day" id="clockDay">Sunday</span>
-              <span class="clock__time" id="clockTime">11:00</span>
-            </div>
-          </div>
-
-          <div class="scenes">
-            <article class="scene">
-              <figure class="scene__photo">
-                <picture><source srcset="assets/images/train.webp" type="image/webp"><img src="assets/images/train.jpg" width="896" height="1200" loading="lazy" alt="A man packing a week of meals into glass containers on a bright kitchen counter, gym bag on the stool behind him"></picture>
-              </figure>
-              <div class="scene__txt">
-                <p class="scene__when">Sunday · 11:00</p>
-                <h3 class="scene__title">The prep hour</h3>
-                <p>One hour now buys five calm dinners. You need a cut that cooks in bulk and still tastes good on Thursday.</p>
-                <a class="chip" href="#range" data-cut="2">Boneless Thighs</a>
-              </div>
-            </article>
-
-            <article class="scene">
-              <figure class="scene__photo">
-                <picture><source srcset="assets/images/strip-1.webp" type="image/webp"><img src="assets/images/strip-1.jpg" width="896" height="1200" loading="lazy" alt="Overhead view of six meal-prep boxes with grilled chicken, broccoli, sweet potato and avocado on a marble counter"></picture>
-              </figure>
-              <div class="scene__txt">
-                <p class="scene__when">Weekdays · 13:15</p>
-                <h3 class="scene__title">Lunch at the desk</h3>
-                <p>No time to think about protein at one in the afternoon, so it was sorted days ago. Lean, boneless, repeatable.</p>
-                <a class="chip" href="#range" data-cut="1">Breast Boneless</a>
-              </div>
-            </article>
-
-            <article class="scene">
-              <figure class="scene__photo">
-                <picture><source srcset="assets/images/strip-4.webp" type="image/webp"><img src="assets/images/strip-4.jpg" width="896" height="1200" loading="lazy" alt="A woman stretching on a tree-lined evening running path with city towers behind her"></picture>
-              </figure>
-              <div class="scene__txt">
-                <p class="scene__when">Weeknights · 19:10</p>
-                <h3 class="scene__title">Back from the run</h3>
-                <p>Showered, starving, zero patience. Something that goes in the air fryer and comes out as a reward.</p>
-                <a class="chip" href="#range" data-cut="3">Wings</a>
-              </div>
-            </article>
-
-            <article class="scene">
-              <figure class="scene__photo">
-                <picture><source srcset="assets/images/strip-3.webp" type="image/webp"><img src="assets/images/strip-3.jpg" width="896" height="1200" loading="lazy" alt="Golden seared chicken in a cast-iron pan with rosemary over a gas flame in a busy kitchen"></picture>
-              </figure>
-              <div class="scene__txt">
-                <p class="scene__when">Tuesday · 20:40</p>
-                <h3 class="scene__title">Cooking it properly</h3>
-                <p>Some nights you still want a real curry, from scratch, with the bone in. It is slow food on a fast week.</p>
-                <a class="chip" href="#range" data-cut="0">Curry Cut</a>
-              </div>
-            </article>
-          </div>
-        </div>
+      <div class="wrap">
+        <ol class="story__pts">
+          <li data-reveal>
+            <span class="story__n">01</span>
+            <h3>Product First</h3>
+            <p>What goes into the range matters more than how many things are in it. We would rather do a few things properly than many things adequately.</p>
+          </li>
+          <li data-reveal>
+            <span class="story__n">02</span>
+            <h3>Built on Trust</h3>
+            <p>Plain language, honest descriptions, no overstatement. You should always know exactly what you are bringing home and why it is worth it.</p>
+          </li>
+          <li data-reveal>
+            <span class="story__n">03</span>
+            <h3>Made for Everyday Life</h3>
+            <p>Good food should not be reserved for occasions. It should fit the way you actually cook, on the days you actually cook.</p>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -182,59 +138,42 @@
     <section class="range" id="range" data-theme="light">
       <div class="wrap range__head">
         <div>
-          <p class="eyebrow">03 — The range</p>
-          <h2 class="h2 range__title">The whole list.<br><em>All four.</em></h2>
+          <p class="eyebrow">Our Products</p>
+          <h2 class="h2 range__title">The Range</h2>
         </div>
-        <p class="range__note">Each cut is named for what it is. Hover, tap or tab across to read them, then take your pick on Zepto.</p>
+        <p class="range__note">Every cut we offer is meant to earn its place in your kitchen. Each one is described exactly as it is — nothing more, nothing less.</p>
       </div>
 
       <div class="wrap">
         <div class="cuts" id="cuts">
-          <article class="cut is-active" tabindex="0" data-i="0" aria-label="Curry Cut">
-            <picture><source srcset="assets/images/curry-cut.webp" type="image/webp"><img src="assets/images/curry-cut.jpg" width="1024" height="1024" loading="lazy" alt="Bone-in curry cut chicken pieces laid out on a slate board with parsley and black pepper"></picture>
-            <span class="cut__rail" aria-hidden="true"><b>01</b> Curry Cut</span>
-            <div class="cut__body">
-              <p class="cut__num">01</p>
-              <h3 class="cut__name">Curry Cut</h3>
-              <p>Bone-in pieces, cut for curries and gravies. The bone stays because it earns its place in the pot.</p>
-              <ul class="tags"><li>Bone-in</li><li>Curries &amp; gravies</li></ul>
-              <a class="btn btn--peach" href="#" data-zepto>Find it on Zepto <span aria-hidden="true">↗</span></a>
-            </div>
-          </article>
-
-          <article class="cut" tabindex="0" data-i="1" aria-label="Breast Boneless">
+          <article class="cut is-active" tabindex="0" data-i="0" aria-label="Breast Boneless">
             <picture><source srcset="assets/images/breast-boneless.webp" type="image/webp"><img src="assets/images/breast-boneless.jpg" width="1024" height="1024" loading="lazy" alt="Four boneless chicken breasts arranged on white marble with thyme and parsley"></picture>
-            <span class="cut__rail" aria-hidden="true"><b>02</b> Breast Boneless</span>
+            <span class="cut__rail" aria-hidden="true">Breast Boneless</span>
             <div class="cut__body">
-              <p class="cut__num">02</p>
+              <p class="cut__num">Fresh Chicken</p>
               <h3 class="cut__name">Breast Boneless</h3>
-              <p>Lean and boneless. The one you cook on Sunday and are still glad to see on Thursday.</p>
-              <ul class="tags"><li>Boneless</li><li>Lean</li><li>Meal-prep friendly</li></ul>
-              <a class="btn btn--peach" href="#" data-zepto>Find it on Zepto <span aria-hidden="true">↗</span></a>
+              <p>Boneless chicken breast.</p>
+              <a class="btn btn--peach" href="#" data-zepto>View on Zepto <span aria-hidden="true">↗</span></a>
             </div>
           </article>
-
-          <article class="cut" tabindex="0" data-i="2" aria-label="Boneless Thighs">
+          <article class="cut" tabindex="0" data-i="1" aria-label="Boneless Thighs">
             <picture><source srcset="assets/images/boneless-thighs.webp" type="image/webp"><img src="assets/images/boneless-thighs.jpg" width="1024" height="1024" loading="lazy" alt="Boneless chicken thighs seasoned with thyme and pepper on a rustic wooden board"></picture>
-            <span class="cut__rail" aria-hidden="true"><b>03</b> Boneless Thighs</span>
+            <span class="cut__rail" aria-hidden="true">Boneless Thighs</span>
             <div class="cut__body">
-              <p class="cut__num">03</p>
+              <p class="cut__num">Fresh Chicken</p>
               <h3 class="cut__name">Boneless Thighs</h3>
-              <p>Juicy and forgiving, so it survives a distracted cook. Good for cooking in bulk.</p>
-              <ul class="tags"><li>Boneless</li><li>Juicy</li><li>Bulk cooking</li></ul>
-              <a class="btn btn--peach" href="#" data-zepto>Find it on Zepto <span aria-hidden="true">↗</span></a>
+              <p>Boneless chicken thigh.</p>
+              <a class="btn btn--peach" href="#" data-zepto>View on Zepto <span aria-hidden="true">↗</span></a>
             </div>
           </article>
-
-          <article class="cut" tabindex="0" data-i="3" aria-label="Wings">
+          <article class="cut" tabindex="0" data-i="2" aria-label="Wings">
             <picture><source srcset="assets/images/wings.webp" type="image/webp"><img src="assets/images/wings.jpg" width="1024" height="1024" loading="lazy" alt="Seasoned chicken wings lined up on a white ceramic platter with rosemary"></picture>
-            <span class="cut__rail" aria-hidden="true"><b>04</b> Wings</span>
+            <span class="cut__rail" aria-hidden="true">Wings</span>
             <div class="cut__body">
-              <p class="cut__num">04</p>
+              <p class="cut__num">Fresh Chicken</p>
               <h3 class="cut__name">Wings</h3>
-              <p>Snack-ready and happy in an air fryer. Dinner for one, or something to share.</p>
-              <ul class="tags"><li>Snack-ready</li><li>Air-fryer friendly</li></ul>
-              <a class="btn btn--peach" href="#" data-zepto>Find it on Zepto <span aria-hidden="true">↗</span></a>
+              <p>Chicken wings.</p>
+              <a class="btn btn--peach" href="#" data-zepto>View on Zepto <span aria-hidden="true">↗</span></a>
             </div>
           </article>
         </div>
@@ -245,19 +184,8 @@
     <section class="diff" id="difference" data-theme="dark">
       <div class="wrap diff__grid">
         <div class="diff__intro">
-          <p class="eyebrow">04 — What makes it different</p>
-          <h2 class="h2">Small on purpose.<br><em>Plain on the label.</em></h2>
-
-          <div class="nope" id="nope">
-            <p class="nope__lead">Words you won’t find on our packs</p>
-            <ul>
-              <li><s>premium-grade</s></li>
-              <li><s>super-select</s></li>
-              <li><s>chef’s choice</s></li>
-              <li><s>ultra-fresh</s></li>
-            </ul>
-            <p class="nope__yes">Boneless Thighs. <span>Said plainly.</span></p>
-          </div>
+          <p class="eyebrow">Our Difference</p>
+          <h2 class="h2">Built Differently,<br><em>On Purpose.</em></h2>
         </div>
 
         <div class="diff__photos" aria-hidden="false">
@@ -271,19 +199,14 @@
 
         <ol class="diff__list">
           <li data-reveal>
-            <span class="diff__n">I</span>
-            <h3>A small range</h3>
-            <p>Four cuts means no wandering the aisle. You always know what you are ordering and why it is on the list.</p>
+            <span class="diff__n">01</span>
+            <h3>Thoughtful Products</h3>
+            <p>A deliberately small range of cuts, chosen for how they fit into real cooking rather than how they fill a shelf.</p>
           </li>
           <li data-reveal>
-            <span class="diff__n">II</span>
-            <h3>Honest labelling</h3>
-            <p>Cut name first. Bone-in or boneless, said plainly. A label should tell you what is inside, not how to feel about it.</p>
-          </li>
-          <li data-reveal>
-            <span class="diff__n">III</span>
-            <h3>Fresh, on purpose</h3>
-            <p>Fresh chicken is the whole product, and it is why the range is small enough to do properly.</p>
+            <span class="diff__n">02</span>
+            <h3>A Distinctive Identity</h3>
+            <p>A brand you recognise at a glance — in the way it looks, the way it speaks and the way it behaves.</p>
           </li>
         </ol>
       </div>
@@ -293,8 +216,9 @@
     <section class="where" id="availability" data-theme="peach">
       <div class="wrap where__grid">
         <div class="where__copy">
-          <p class="eyebrow">05 — Availability</p>
-          <h2 class="h2">Five neighbourhoods<br><em>across Bengaluru.</em></h2>
+          <p class="eyebrow">Availability</p>
+          <h2 class="h2">Accessibility</h2>
+          <p class="where__lede">Available through Zepto across select Bengaluru neighbourhoods, so fresh chicken stays within reach of an ordinary week.</p>
           <ul class="hoods" id="hoods">
             <li><a href="#" data-zepto data-hood="indiranagar"><span>Indiranagar</span><i aria-hidden="true">↗</i></a></li>
             <li><a href="#" data-zepto data-hood="koramangala"><span>Koramangala</span><i aria-hidden="true">↗</i></a></li>
@@ -302,7 +226,7 @@
             <li><a href="#" data-zepto data-hood="bellandur"><span>Bellandur</span><i aria-hidden="true">↗</i></a></li>
             <li><a href="#" data-zepto data-hood="whitefield"><span>Whitefield</span><i aria-hidden="true">↗</i></a></li>
           </ul>
-          <p class="where__note">Enter your address on Zepto to confirm delivery to your door.</p>
+          <a class="btn btn--lg where__cta" href="#range">Get to know our products <span aria-hidden="true">→</span></a>
         </div>
 
         <figure class="schematic">
@@ -330,51 +254,38 @@
     <section class="contact" id="contact" data-theme="dark">
       <div class="wrap contact__grid">
         <div class="contact__copy">
-          <p class="eyebrow">06 — Talk to us</p>
-          <h2 class="h2">Partner with us,<br><em>or just say hello.</em></h2>
-          <p class="contact__lede">Cafés, gyms, meal-prep kitchens, creators, or someone with a good idea: tell us what you have in mind.</p>
+          <p class="eyebrow">Contact</p>
+          <h2 class="h2">Have Something in Mind?<br><em>Let’s Talk.</em></h2>
+          <p class="contact__lede">Whether it is a question about our cuts, a collaboration, or bringing Carne &amp; Gusto to your own shelf — send us a note and we will come back to you.</p>
 
           <dl class="reach">
-            <div><dt>Email</dt><dd data-contact="email">Coming soon</dd></div>
-            <div><dt>Phone</dt><dd data-contact="phone">Coming soon</dd></div>
+            <div><dt>Phone</dt><dd data-contact="phone">To be added</dd></div>
           </dl>
-          <ul class="social">
-            <li><a href="#" data-social="instagram">Instagram</a></li>
-            <li><a href="#" data-social="facebook">Facebook</a></li>
-            <li><a href="#" data-social="linkedin">LinkedIn</a></li>
-          </ul>
+          <p class="contact__buy">Prefer to buy? Carne &amp; Gusto is available on Zepto across select Bengaluru neighbourhoods.</p>
         </div>
 
         <form class="form" id="form" novalidate>
           <div class="field">
-            <label for="f-name">Name</label>
+            <label for="f-name">Full Name <b aria-hidden="true">*</b></label>
             <input id="f-name" name="name" type="text" autocomplete="name" required>
             <span class="err" data-err="name"></span>
           </div>
           <div class="field">
-            <label for="f-email">Email</label>
+            <label for="f-email">Email <b aria-hidden="true">*</b></label>
             <input id="f-email" name="email" type="email" autocomplete="email" required>
             <span class="err" data-err="email"></span>
           </div>
           <div class="field">
-            <label for="f-phone">Phone <small>optional</small></label>
+            <label for="f-phone">Phone Number <small>optional</small></label>
             <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel">
             <span class="err" data-err="phone"></span>
           </div>
-          <fieldset class="field pills">
-            <legend>What’s this about?</legend>
-            <label><input type="radio" name="type" value="Partnership" required><span>Partnership</span></label>
-            <label><input type="radio" name="type" value="Bulk or corporate order"><span>Bulk / corporate</span></label>
-            <label><input type="radio" name="type" value="Press or collaboration"><span>Press &amp; collabs</span></label>
-            <label><input type="radio" name="type" value="Something else"><span>Something else</span></label>
-            <span class="err" data-err="type"></span>
-          </fieldset>
           <div class="field">
-            <label for="f-msg">Message</label>
+            <label for="f-msg">Message <b aria-hidden="true">*</b></label>
             <textarea id="f-msg" name="message" rows="4" required></textarea>
             <span class="err" data-err="message"></span>
           </div>
-          <button class="btn btn--peach btn--lg" type="submit">Send enquiry <span aria-hidden="true">→</span></button>
+          <button class="btn btn--peach btn--lg" type="submit">Send message <span aria-hidden="true">→</span></button>
           <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
         </form>
       </div>
@@ -384,14 +295,27 @@
   <footer class="foot" data-theme="dark">
     <div class="wrap">
       <p class="foot__word" aria-label="Carne &amp; Gusto">Carne <i>&amp;</i> Gusto</p>
-      <div class="foot__row">
-        <p class="foot__tag">Good Food. Thoughtfully Crafted.</p>
-        <nav class="foot__nav" aria-label="Footer">
-          <a href="#belief">Belief</a><a href="#range">The range</a><a href="#availability">Where</a><a href="#contact">Contact</a>
-          <a href="#" data-zepto>Zepto ↗</a>
+      <div class="foot__cols">
+        <div class="foot__about">
+          <p class="foot__tag">Good Food. Thoughtfully Crafted.</p>
+          <p>A fresh chicken brand from Bengaluru.</p>
+        </div>
+        <nav class="foot__col" aria-label="Footer">
+          <h4>Navigate</h4>
+          <a href="#top">Home</a><a href="#story">Our Story</a><a href="#range">Products</a><a href="#difference">Our Difference</a><a href="#availability">Availability</a><a href="#contact">Contact</a>
         </nav>
-        <p class="foot__small">© 2026 Carne &amp; Gusto · Bengaluru, India</p>
+        <div class="foot__col">
+          <h4>Contact</h4>
+          <p>Email — <span data-contact="email">To be added</span></p>
+          <p>Phone — <span data-contact="phone">To be added</span></p>
+          <p>Serving — Bengaluru</p>
+        </div>
+        <div class="foot__col">
+          <h4>Follow</h4>
+          <a href="#" data-social="instagram">Instagram</a><a href="#" data-social="facebook">Facebook</a><a href="#" data-social="linkedin">LinkedIn</a>
+        </div>
       </div>
+      <p class="foot__small">© 2026 Carne &amp; Gusto · Bengaluru, India</p>
     </div>
   </footer>
 

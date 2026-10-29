@@ -25,10 +25,12 @@ $$('[data-zepto]').forEach((a) => {
   }
 });
 
-const email = $('[data-contact="email"]');
-const phone = $('[data-contact="phone"]');
-if (CONFIG.email) email.innerHTML = `<a href="mailto:${CONFIG.email}">${CONFIG.email}</a>`; else email.classList.add('is-pending');
-if (CONFIG.phone) phone.innerHTML = `<a href="tel:${CONFIG.phone.replace(/\s/g, '')}">${CONFIG.phone}</a>`; else phone.classList.add('is-pending');
+$$('[data-contact="email"]').forEach((el) => {
+  if (CONFIG.email) el.innerHTML = `<a href="mailto:${CONFIG.email}">${CONFIG.email}</a>`; else el.classList.add('is-pending');
+});
+$$('[data-contact="phone"]').forEach((el) => {
+  if (CONFIG.phone) el.innerHTML = `<a href="tel:${CONFIG.phone.replace(/\s/g, '')}">${CONFIG.phone}</a>`; else el.classList.add('is-pending');
+});
 $$('[data-social]').forEach((a) => {
   const url = CONFIG.social[a.dataset.social];
   if (url) { a.href = url; a.target = '_blank'; a.rel = 'noopener'; }
@@ -62,6 +64,7 @@ intro
   .from('.hero__eyebrow', { y: 20, opacity: 0, duration: 0.8 }, 0.35)
   .from('.hero__title .ln > span', { yPercent: 115, duration: 1.3, stagger: 0.14 }, 0.4)
   .from('.hero__lede', { y: 24, opacity: 0, duration: 1 }, 0.95)
+  .from('.hero__cta > *', { y: 20, opacity: 0, duration: 0.8, stagger: 0.1 }, 1.1)
   .from('.hero__foot > *', { y: 18, opacity: 0, duration: 0.9, stagger: 0.1 }, 1.1);
 
 
@@ -95,78 +98,7 @@ if (!reduced) {
   });
 }
 
-/* ── routines: a 24-hour dial that turns through four real moments ── */
-const STOPS = [
-  { m: 11 * 60,       day: 'Sunday' },
-  { m: 13 * 60 + 15,  day: 'Weekdays' },
-  { m: 19 * 60 + 10,  day: 'Weeknights' },
-  { m: 20 * 60 + 40,  day: 'Tuesday' },
-];
-const NS = 'http://www.w3.org/2000/svg';
-const polar = (m, r) => {
-  const a = (m / 1440) * Math.PI * 2;
-  return [200 + Math.sin(a) * r, 200 - Math.cos(a) * r];
-};
-const svgEl = (name, attrs, parent) => {
-  const el = document.createElementNS(NS, name);
-  Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
-  parent.append(el);
-  return el;
-};
-const ticks = $('#dialTicks');
-for (let h = 0; h < 24; h++) {
-  const major = h % 6 === 0;
-  const [x1, y1] = polar(h * 60, 170);
-  const [x2, y2] = polar(h * 60, major ? 154 : 162);
-  svgEl('line', { x1, y1, x2, y2, class: `dial__tick${major ? ' dial__tick--major' : ''}` }, ticks);
-  if (major) {
-    const [lx, ly] = polar(h * 60, 128);
-    svgEl('text', { x: lx, y: ly, class: 'dial__label' }, ticks).textContent = String(h).padStart(2, '0');
-  }
-}
-const stopDots = STOPS.map((s) => {
-  const [cx, cy] = polar(s.m, 150);
-  return svgEl('circle', { cx, cy, r: 7, class: 'dial__stop' }, $('#dialStops'));
-});
-const hand = $('#dialHand'), arc = $('#dialArc'), clockTime = $('#clockTime'), clockDay = $('#clockDay');
-const ARC_LEN = 2 * Math.PI * 150;
-const dial = { m: STOPS[0].m };
-function renderDial() {
-  const [x, y] = polar(dial.m, 138);
-  hand.setAttribute('x2', x); hand.setAttribute('y2', y);
-  arc.style.strokeDashoffset = ARC_LEN * (1 - dial.m / 1440);
-  const hh = Math.floor(dial.m / 60), mm = Math.floor(dial.m % 60);
-  clockTime.textContent = `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
-  let idx = 0;
-  STOPS.forEach((s, i) => { if (dial.m >= s.m - 20) idx = i; });
-  clockDay.textContent = STOPS[idx].day;
-  stopDots.forEach((d, i) => d.classList.toggle('is-on', dial.m >= STOPS[i].m - 1));
-}
-renderDial();
-
-const mm = gsap.matchMedia();
-mm.add('(min-width: 900px) and (prefers-reduced-motion: no-preference)', () => {
-  const scenes = $$('.scene');
-  gsap.set(scenes.slice(1), { autoAlpha: 0 });
-  const tl = gsap.timeline({
-    defaults: { ease: 'none' },
-    scrollTrigger: {
-      trigger: '.routines__stage', start: 'top top', end: () => `+=${window.innerHeight * 3.2}`,
-      pin: true, scrub: 0.6, anticipatePin: 1, invalidateOnRefresh: true,
-    },
-  });
-  for (let i = 1; i < scenes.length; i++) {
-    const at = i - 1;
-    tl.to(dial, { m: STOPS[i].m, duration: 1, ease: 'power1.inOut', onUpdate: renderDial }, at)
-      .to(scenes[i - 1], { autoAlpha: 0, y: -28, duration: 0.25 }, at + 0.5)
-      .fromTo(scenes[i], { autoAlpha: 0, y: 36 }, { autoAlpha: 1, y: 0, duration: 0.3 }, at + 0.68)
-      .fromTo($('.scene__photo img', scenes[i]), { scale: 1.18 }, { scale: 1, duration: 0.5 }, at + 0.68);
-  }
-  tl.to({}, { duration: 0.35 });
-  return () => { gsap.set(scenes, { clearProps: 'all' }); dial.m = STOPS[0].m; renderDial(); };
-});
-
-/* ── range: four panels, one open at a time ── */
+/* ── range: three panels, one open at a time ── */
 const cuts = $$('.cut');
 const wide = matchMedia('(min-width: 900px)');
 let openCut = 0;
@@ -179,22 +111,12 @@ cuts.forEach((c, i) => {
   c.addEventListener('focusin', () => openPanel(i));
   c.addEventListener('click', () => openPanel(i));
 });
-$$('[data-cut]').forEach((a) => a.addEventListener('click', () => openPanel(+a.dataset.cut)));
 gsap.from('.cut', {
   y: 70, opacity: 0, duration: 1.1, ease: 'power3.out', stagger: 0.1,
   scrollTrigger: { trigger: '#cuts', start: 'top 82%', once: true },
 });
 
 /* ── difference ── */
-const strikes = $$('#nope s');
-ScrollTrigger.create({
-  trigger: '#nope', start: 'top 75%', once: true,
-  onEnter: () => {
-    gsap.to(strikes, { '--w': 1, duration: 0.7, ease: 'power3.inOut', stagger: 0.35, delay: 0.3 });
-    gsap.from('.nope__yes', { y: 24, opacity: 0, duration: 1, delay: 1.9, ease: 'power3.out' });
-  },
-});
-gsap.set('.nope__yes', { opacity: 1 });
 if (!reduced && matchMedia('(min-width: 900px)').matches) {
   $$('[data-parallax]').forEach((el) => {
     gsap.fromTo(el, { y: -parseFloat(el.dataset.parallax) }, {
@@ -203,7 +125,6 @@ if (!reduced && matchMedia('(min-width: 900px)').matches) {
     });
   });
 }
-if (reduced) strikes.forEach((s) => s.style.setProperty('--w', 1));
 
 /* ── availability: route draws itself, list and map talk to each other ── */
 const route = $('#route');
@@ -250,22 +171,18 @@ const rules = {
   email: (v) => (/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) ? '' : 'That email doesn’t look right.'),
   phone: (v) => (!v.trim() || /^[+()\d\s-]{7,16}$/.test(v.trim()) ? '' : 'Digits, spaces and + only, please.'),
   message: (v) => (v.trim().length < 10 ? 'A line or two helps us reply properly.' : ''),
-  type: (v) => (v ? '' : 'Pick the closest fit.'),
 };
 function check(name) {
   const f = form.elements[name];
-  const value = name === 'type' ? (form.querySelector('input[name=type]:checked')?.value || '') : f.value;
-  const msg = rules[name](value);
+  const msg = rules[name](f.value);
   $(`[data-err="${name}"]`).textContent = msg;
-  if (name !== 'type') f.setAttribute('aria-invalid', msg ? 'true' : 'false');
+  f.setAttribute('aria-invalid', msg ? 'true' : 'false');
   return !msg;
 }
 Object.keys(rules).forEach((n) => {
-  if (n === 'type') return;
   form.elements[n].addEventListener('blur', () => check(n));
   form.elements[n].addEventListener('input', () => form.elements[n].getAttribute('aria-invalid') === 'true' && check(n));
 });
-form.addEventListener('change', (e) => e.target.name === 'type' && check('type'));
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -319,56 +236,67 @@ addEventListener('load', () => ScrollTrigger.refresh());
   const done = () => { root.classList.remove('is-loading'); el.remove(); intro.play(); ScrollTrigger.refresh(); };
   if (reduced) { done(); intro.progress(1); return; }
 
-  const brand = $('#loaderBrand');
+  const ring = $('#loaderRing');
   const stage = $('#loaderStage');
-  const sheen = $('.loader__sheen');
-  const words = brand.textContent.trim().split(/\s+/);
-  brand.textContent = '';
-  const letters = [];
-  words.forEach((w) => {
-    const word = document.createElement('span');
-    word.className = 'loader__word';
-    [...w].forEach((ch) => {
-      const s = document.createElement('span');
-      s.textContent = ch;
-      letters.push(s);
-      word.append(s);
-    });
-    brand.append(word);
+  const NAME = 'CARNE & GUSTO';
+  const n = NAME.length, mid = (n - 1) / 2;
+  const SLOT = 0.52;                       // em of arc per letter, kept constant while the ring unrolls
+  const letters = [...NAME].map((ch) => {
+    const s = document.createElement('span');
+    s.className = 'loader__l';
+    s.textContent = ch === ' ' ? '\u00a0' : ch;
+    ring.append(s);
+    return s;
   });
-  const n = letters.length, mid = (n - 1) / 2;
-
   const small = matchMedia('(max-width:899px)').matches;
-  gsap.set(letters, { opacity: 0, rotationX: -95, z: small ? -350 : -700, y: 60, transformOrigin: '50% 100% -40px' });
-  gsap.set(brand, { rotationY: small ? -12 : -24, rotationX: small ? 4 : 8 });
 
-  // 1 · letters swing up out of the dark, settling one after another
+  // s.spin: ring rotation · s.step: degrees between letters (360/n = closed ring, small = flat name)
+  // s.grow: ring scale-in · s.out: fly-past exit
+  const s = { spin: small ? 360 : 540, step: 360 / n, grow: 0, out: 0 };
+  const render = () => {
+    const rad = (s.step * Math.PI) / 180;
+    const R = SLOT / rad;
+    ring.style.transform = `translateZ(${-R * s.grow}em) rotateX(${7 * s.grow}deg) rotateY(${s.spin}deg) scale(${0.3 + 0.7 * s.grow})`;
+    letters.forEach((el, i) => {
+      const a = (i - mid) * s.step;
+      const world = ((a + s.spin) * Math.PI) / 180;
+      const face = Math.cos(world);                       // 1 = facing us, -1 = facing away
+      const dist = Math.abs(i - mid) / mid;               // 0 centre … 1 edges
+      const o = Math.min(1, Math.max(0, s.out * 1.6 - (1 - dist) * 0.6));
+      const op = (face > 0 ? 0.55 + 0.45 * face : 0.16 + 0.1 * (1 + face)) * s.grow * (1 - o);
+      el.style.opacity = op.toFixed(3);
+      el.style.transform = `translate(-50%,-50%) rotateY(${a}deg) translateZ(${R}em) translateZ(${o * 700}px)`;
+    });
+  };
+  render();
+  gsap.ticker.add(render);
+
+  // 1 · the ring spins up out of the dark, then slows
   const tl = gsap.timeline();
   tl.to('.loader__glow', { opacity: 1, duration: 1.4, ease: 'power2.out' }, 0)
-    .to(letters, { opacity: 1, rotationX: 0, z: 0, y: 0, duration: 1.15, ease: 'back.out(1.5)', stagger: { each: 0.06, from: 'start' } }, 0.15)
-    // 2 · the whole word turns to face us, then a light passes across it
-    .to(brand, { rotationY: 0, rotationX: 0, duration: 1.6, ease: 'power3.out' }, 0.2)
-    .add(() => sheen.classList.add('is-run'), 1.2)
-    .to(brand, { rotationY: small ? 3 : 5, duration: 2.2, ease: 'sine.inOut', yoyo: true, repeat: -1 }, 1.8);
+    .to(s, { grow: 1, duration: 1.2, ease: 'power3.out' }, 0.1)
+    .to(s, { spin: 0, duration: 2.7, ease: 'power3.out' }, 0.1)
+    // 2 · the ring unrolls into a flat, readable name
+    .to(s, { step: small ? 7 : 5, duration: 1.5, ease: 'power3.inOut' }, 1.5);
 
-  // gentle pointer parallax on top of the idle sway
+  // gentle pointer parallax
   const tiltX = gsap.quickTo(stage, 'rotationX', { duration: 0.8, ease: 'power3.out' });
   const tiltY = gsap.quickTo(stage, 'rotationY', { duration: 0.8, ease: 'power3.out' });
-  const onMove = (e) => { tiltY((e.clientX / innerWidth - 0.5) * 14); tiltX(-(e.clientY / innerHeight - 0.5) * 10); };
+  const onMove = (e) => { tiltY((e.clientX / innerWidth - 0.5) * 10); tiltX(-(e.clientY / innerHeight - 0.5) * 7); };
   addEventListener('pointermove', onMove);
 
-  const entered = new Promise((r) => gsap.delayedCall(0.15 + 0.06 * (n - 1) + 1.15, r));
+  const entered = new Promise((r) => gsap.delayedCall(3.2, r));
   const loaded = new Promise((r) => (document.readyState === 'complete' ? r() : addEventListener('load', r, { once: true })));
   const ready = Promise.all([loaded, document.fonts ? document.fonts.ready : Promise.resolve(), entered]);
-  const failsafe = new Promise((r) => setTimeout(r, 7000));
+  const failsafe = new Promise((r) => setTimeout(r, 8000));
 
   Promise.race([ready, failsafe]).then(() => {
     // 3 · letters rush past the camera from the centre out, then the curtain lifts
     removeEventListener('pointermove', onMove);
-    gsap.timeline({ delay: 0.5 })
-      .to(letters, { z: small ? 450 : 900, opacity: 0, rotationX: 25, duration: 0.8, ease: 'power3.in', stagger: { each: 0.035, from: 'center' } })
-      .to('.loader__glow', { opacity: 0, duration: 0.5 }, '<')
-      .to(el, { yPercent: -100, duration: 1, ease: 'power4.inOut', onComplete: done }, '-=0.35');
+    gsap.timeline({ delay: 0.35 })
+      .to(s, { step: s.step, spin: 0, grow: 1, out: 1, duration: 0.95, ease: 'power3.in' })
+      .to('.loader__glow, .loader__floor', { opacity: 0, duration: 0.5 }, '<')
+      .to(el, { yPercent: -100, duration: 1, ease: 'power4.inOut', onComplete: () => { gsap.ticker.remove(render); done(); } }, '-=0.3');
   });
 })();
 
@@ -406,4 +334,20 @@ addEventListener('load', () => ScrollTrigger.refresh());
     arch.style.setProperty('--gx', 50 + nx * 80 + '%');
     arch.style.setProperty('--gy', 30 + ny * 80 + '%');
   });
+})();
+
+
+/* ───────── mobile menu ───────── */
+(function menu() {
+  const toggle = $('#navToggle'), panel = $('#menu'), root = document.documentElement;
+  const set = (open) => {
+    root.classList.toggle('menu-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    panel.setAttribute('aria-hidden', String(!open));
+  };
+  toggle.addEventListener('click', () => set(!root.classList.contains('menu-open')));
+  $$('a', panel).forEach((a) => a.addEventListener('click', () => set(false)));
+  addEventListener('keydown', (e) => e.key === 'Escape' && set(false));
+  matchMedia('(min-width: 1061px)').addEventListener('change', (e) => e.matches && set(false));
 })();
