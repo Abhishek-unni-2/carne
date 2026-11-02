@@ -15,16 +15,6 @@ function say(msg) {
   toastTimer = setTimeout(() => toast.classList.remove('is-on'), 3200);
 }
 
-$$('[data-zepto]').forEach((a) => {
-  if (CONFIG.zeptoUrl) {
-    a.href = CONFIG.zeptoUrl;
-    a.target = '_blank';
-    a.rel = 'noopener';
-  } else {
-    a.addEventListener('click', (e) => { e.preventDefault(); say('The Zepto listing link goes live soon.'); });
-  }
-});
-
 $$('[data-contact="email"]').forEach((el) => {
   if (CONFIG.email) el.innerHTML = `<a href="mailto:${CONFIG.email}">${CONFIG.email}</a>`; else el.classList.add('is-pending');
 });
