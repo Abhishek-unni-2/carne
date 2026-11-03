@@ -12,4 +12,4 @@ node dev-server.js      # http://localhost:5173
 
 ## TODO before launch
 
-Placeholders live in `js/config.js`: Zepto link, email, phone, Instagram/Facebook/LinkedIn, form endpoint. Empty values show an honest "coming soon" state.
+Placeholders live in `js/config.js`: email, phone, Instagram/Facebook/LinkedIn, form endpoint. Empty values show an honest "coming soon" state.
