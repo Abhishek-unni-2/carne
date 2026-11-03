@@ -87,22 +87,10 @@ if (!reduced) {
   });
 }
 
-/* ── range: three panels, one open at a time ── */
-const cuts = $$('.cut');
-const wide = matchMedia('(min-width: 900px)');
-let openCut = 0;
-function openPanel(i) {
-  openCut = i;
-  cuts.forEach((c, n) => c.classList.toggle('is-active', n === i));
-}
-cuts.forEach((c, i) => {
-  c.addEventListener('pointerenter', () => wide.matches && openPanel(i));
-  c.addEventListener('focusin', () => openPanel(i));
-  c.addEventListener('click', () => openPanel(i));
-});
-gsap.from('.cut', {
-  y: 70, opacity: 0, duration: 1.1, ease: 'power3.out', stagger: 0.1,
-  scrollTrigger: { trigger: '#cuts', start: 'top 82%', once: true },
+/* ── range: cards rise in ── */
+gsap.from('.pcard', {
+  y: 60, opacity: 0, duration: 1, ease: 'power3.out', stagger: 0.12,
+  scrollTrigger: { trigger: '.pcards', start: 'top 85%', once: true },
 });
 
 /* ── difference ── */
