@@ -561,9 +561,11 @@ html.menu-open .nav::before{background:transparent;backdrop-filter:none;-webkit-
 .hero__bg img.is-on{opacity:.9;transform:scale(1)}
 .hero__bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,53,31,.55),transparent 25%,transparent 70%,rgba(22,53,31,.5))}
 @media (max-width:899px){
-  .hero{min-height:max(100svh,54rem)}
-  .hero__bg{left:0;top:30.5rem;bottom:11.5rem;height:auto;
-    -webkit-mask-image:linear-gradient(transparent,#000 30%,#000 72%,transparent);mask-image:linear-gradient(transparent,#000 30%,#000 72%,transparent);-webkit-mask-composite:initial;mask-composite:initial}
+  .hero{min-height:max(100svh,44rem)}
+  .hero__bg{left:0;right:0;top:0;bottom:0;height:auto;-webkit-mask-image:none;mask-image:none;-webkit-mask-composite:initial;mask-composite:initial}
+  .hero__bg img{object-position:62% 60%}
+  .hero__bg::after{background:linear-gradient(180deg,rgba(22,53,31,.86) 0,rgba(22,53,31,.62) 38%,rgba(22,53,31,.22) 62%,rgba(22,53,31,.12) 78%,rgba(22,53,31,.92) 100%)}
+  .hero__copy{text-shadow:0 2px 18px rgba(10,28,16,.55)}
 }
 
 /* loader tagline */
