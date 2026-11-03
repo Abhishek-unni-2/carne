@@ -49,8 +49,7 @@ $$('[data-theme]').forEach((sec) => {
 const intro = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } });
 intro
   .from('.nav', { yPercent: -100, opacity: 0, duration: 0.9 }, 0.2)
-  .from('.hero__arch', { clipPath: 'inset(12% 8% 0% 8% round 999px 999px 24px 24px)', opacity: 0, duration: 1.5, ease: 'power3.out' }, 0.2)
-  .from('.hero__float, .hero__ring', { scale: 0.4, opacity: 0, duration: 1.2, ease: 'back.out(1.6)', stagger: 0.15 }, 0.9)
+  .from('.hero__bg', { opacity: 0, duration: 1.6, ease: 'power2.out' }, 0.2)
   .from('.hero__eyebrow', { y: 20, opacity: 0, duration: 0.8 }, 0.35)
   .from('.hero__title .ln > span', { yPercent: 115, duration: 1.3, stagger: 0.14 }, 0.4)
   .from('.hero__lede', { y: 24, opacity: 0, duration: 1 }, 0.95)
@@ -291,39 +290,16 @@ addEventListener('load', () => ScrollTrigger.refresh());
 })();
 
 
-/* ───────── hero: 3D tilt, photo rotation, optional footage ───────── */
-(function heroMedia() {
-  const stage = $('#heroPhoto'), tilt = $('#heroTilt'), arch = $('.hero__arch');
-  if (!stage || !tilt) return;
-
-  // client footage, when present, plays over the photos
-  const vid = $('#heroVideo');
-  if (vid) {
-    vid.addEventListener('canplay', () => { vid.classList.add('is-ready'); vid.play().catch(() => {}); }, { once: true });
-    vid.querySelector('source').addEventListener('error', () => vid.remove());
-  }
-
-  // slow rotation through the cooking photos
-  const imgs = $$('#heroSlides img');
+/* ───────── hero: rotating background photos ───────── */
+(function heroBg() {
+  const imgs = $$('#heroBg img');
+  if (reduced || imgs.length < 2) return;
   let i = 0;
-  if (!reduced && imgs.length > 1) {
-    setInterval(() => {
-      imgs[i].classList.remove('is-on');
-      i = (i + 1) % imgs.length;
-      void imgs[i].offsetWidth;
-      imgs[i].classList.add('is-on');
-    }, 4500);
-  }
-
-  if (reduced || !matchMedia('(hover:hover) and (min-width:900px)').matches) return;
-  const rx = gsap.quickTo(tilt, 'rotationX', { duration: 0.9, ease: 'power3.out' });
-  const ry = gsap.quickTo(tilt, 'rotationY', { duration: 0.9, ease: 'power3.out' });
-  addEventListener('pointermove', (e) => {
-    const nx = e.clientX / innerWidth - 0.5, ny = e.clientY / innerHeight - 0.5;
-    ry(nx * 22); rx(-ny * 16);
-    arch.style.setProperty('--gx', 50 + nx * 80 + '%');
-    arch.style.setProperty('--gy', 30 + ny * 80 + '%');
-  });
+  setInterval(() => {
+    imgs[i].classList.remove('is-on');
+    i = (i + 1) % imgs.length;
+    imgs[i].classList.add('is-on');
+  }, 5500);
 })();
 
 

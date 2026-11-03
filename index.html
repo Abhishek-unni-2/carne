@@ -57,26 +57,14 @@
   <main>
     <!-- 1 · HERO — point of view first. No product, no photography. -->
     <header class="hero" id="top" data-theme="dark">
-      <figure class="hero__photo" id="heroPhoto">
-        <div class="hero__tilt" id="heroTilt">
-          <div class="hero__arch">
-            <!-- Slot for the client's cooking footage: drop a file at assets/video/hero.mp4 and it plays over the photos. -->
-            <div class="hero__slides" id="heroSlides">
-              <img class="is-on" src="assets/images/train.jpg" width="896" height="1200" fetchpriority="high" alt="A man packing a week of meals into glass containers on a bright kitchen counter">
-              <img src="assets/images/strip-1.jpg" width="896" height="1200" alt="Chicken searing in a pan" loading="lazy">
-              <img src="assets/images/strip-3.jpg" width="896" height="1200" alt="Golden seared chicken in a cast-iron pan with rosemary" loading="lazy">
-              <img src="assets/images/strip-4.jpg" width="896" height="1200" alt="Fresh chicken being prepared" loading="lazy">
-            </div>
-            <video class="hero__video" id="heroVideo" muted loop playsinline autoplay preload="metadata" aria-hidden="true">
-              <source src="assets/video/hero.mp4" type="video/mp4">
-            </video>
-          </div>
-          <img class="hero__float hero__float--a" src="assets/images/strip-1.jpg" alt="" loading="lazy">
-          <img class="hero__float hero__float--b" src="assets/images/strip-4.jpg" alt="" loading="lazy">
-          <span class="hero__ring" aria-hidden="true"></span>
-          <figcaption class="hero__badge"><b>Sunday · 11:00</b> The prep hour</figcaption>
-        </div>
-      </figure>
+      <!-- Rotating background photos: add or reorder <img> tags here. -->
+      <div class="hero__bg" id="heroBg" aria-hidden="true">
+        <img class="is-on" src="assets/images/hero.jpg" alt="" fetchpriority="high">
+        <img src="assets/images/boneless-thighs.jpg" alt="" loading="lazy">
+        <img src="assets/images/curry-cut.jpg" alt="" loading="lazy">
+        <img src="assets/images/strip-3.jpg" alt="" loading="lazy">
+        <img src="assets/images/label.jpg" alt="" loading="lazy">
+      </div>
 
       <div class="wrap hero__copy">
         <p class="eyebrow hero__eyebrow">Fresh chicken <span class="dot"></span> Bengaluru</p>
