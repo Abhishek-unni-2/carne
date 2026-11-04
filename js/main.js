@@ -105,16 +105,6 @@ gsap.from('.cut', {
   scrollTrigger: { trigger: '#cuts', start: 'top 82%', once: true },
 });
 
-/* ── difference ── */
-if (!reduced && matchMedia('(min-width: 900px)').matches) {
-  $$('[data-parallax]').forEach((el) => {
-    gsap.fromTo(el, { y: -parseFloat(el.dataset.parallax) }, {
-      y: parseFloat(el.dataset.parallax), ease: 'none',
-      scrollTrigger: { trigger: '.diff__photos', start: 'top bottom', end: 'bottom top', scrub: true },
-    });
-  });
-}
-
 /* ── availability: route draws itself, list and map talk to each other ── */
 const route = $('#route');
 const len = route.getTotalLength();
