@@ -1,10 +1,10 @@
 // Everything the client still has to supply lives here.
 // Leave a value as '' and the UI shows an honest "coming soon" state instead of a made-up one.
 export const CONFIG = {
-  email: '',               // TODO: contact email
-  phone: '',               // TODO: contact phone
+  email: 'carneandgusto@gmail.com',
+  phone: '+91 78889 03481',
   social: {
-    instagram: '',         // TODO
+    instagram: 'https://www.instagram.com/carneandgusto/',
     facebook: '',          // TODO
     linkedin: '',          // TODO
   },
